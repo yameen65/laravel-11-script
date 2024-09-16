@@ -40,7 +40,7 @@ class UserRepository
     public function get_all_users()
     {
         return $this->_model->whereHas('roles', function ($q) {
-            $q->where('name', request()->type);
+            $q->where('name', '!=', 'admin');
         })->get();
     }
 

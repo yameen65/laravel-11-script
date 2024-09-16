@@ -34,7 +34,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data['all'] = $this->_repo->index();
+        $data['all'] = $this->_repo->get_all_users();
         return view($this->_directory . '.all', compact('data'));
     }
 

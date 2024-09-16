@@ -27,16 +27,12 @@
                                 </div>
                             </div>
                             <h1 class="display-5 mt-1 mb-3">2.562</h1>
-                            <div class="mb-0">
-                                <span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -2.65% </span>
-                                Less sales than usual
-                            </div>
                         </x-auth.card>
 
                         <x-auth.card>
                             <div class="row">
                                 <div class="col mt-0">
-                                    <h5 class="card-title">Visitors Today</h5>
+                                    <h5 class="card-title">Total users</h5>
                                 </div>
 
                                 <div class="col-auto">
@@ -48,10 +44,6 @@
                                 </div>
                             </div>
                             <h1 class="display-5 mt-1 mb-3">17.212</h1>
-                            <div class="mb-0">
-                                <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 5.50% </span>
-                                More visitors than usual
-                            </div>
                         </x-auth.card>
                     </div>
                     <div class="col-sm-6">
@@ -70,10 +62,6 @@
                                 </div>
                             </div>
                             <h1 class="display-5 mt-1 mb-3">$24.300</h1>
-                            <div class="mb-0">
-                                <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 8.35% </span>
-                                More earnings than usual
-                            </div>
                         </x-auth.card>
                         <x-auth.card>
                             <div class="row">
@@ -90,10 +78,6 @@
                                 </div>
                             </div>
                             <h1 class="display-5 mt-1 mb-3">43</h1>
-                            <div class="mb-0">
-                                <span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -4.25% </span>
-                                Less orders than usual
-                            </div>
                         </x-auth.card>
                     </div>
                 </div>

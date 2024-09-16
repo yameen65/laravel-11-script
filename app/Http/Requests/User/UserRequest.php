@@ -3,6 +3,7 @@
 namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UserRequest extends FormRequest
 {
@@ -22,7 +23,14 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'username' => ['required', 'string', 'max:200', 'unique:users,username'],
+            'f_name' => ['required', 'string', 'max:100'],
+            'l_name' => ['required', 'string', 'max:100'],
+            'email' => ['required', 'email', 'max:200', 'unique:users,email'],
+            'about' => ['required', 'string', 'max:250'],
+            'password' => ['required', 'string', 'max:250'],
+            'role' => ['required', 'string', 'max:250', 'exists:roles,id'],
+            'file' => ['nullable', 'image', 'mimes:jpeg,jpg,png', 'max:2048'],
         ];
     }
 }

@@ -10,6 +10,7 @@ class UserDto
     public ?string $username;
     public ?string $password;
     public ?string $about;
+    public ?string $role;
     public $file;
 
     /**
@@ -25,6 +26,7 @@ class UserDto
         $this->username = isset($request['username']) ? $request['username'] : null;
         $this->password = isset($request['password']) ? $request['password'] : null;
         $this->about = isset($request['about']) ? $request['about'] : null;
+        $this->role = isset($request['role']) ? $request['role'] : null;
         $this->file = isset(request()->file) ? request()->file : null;
     }
 
@@ -40,6 +42,8 @@ class UserDto
         $this->username == null ?: $data['username'] = $this->username;
         $this->password == null ?: $data['password'] = $this->password;
         $this->about == null ?: $data['about'] = $this->about;
+        $this->role == null ?: $data['type'] = $this->role;
+        $this->email == null ?: $data['email'] = $this->email;
         $this->file == null ?: $data['image'] = $this->file;
 
         return $data;

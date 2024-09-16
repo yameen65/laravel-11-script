@@ -1,8 +1,6 @@
 <div class="card shadow border-0">
     @if ($cardHeader != null)
-        <div class="card-header">
-
-            <strong>{{ $cardHeader }}</strong>
+        <div class="card-header pb-0">
 
             @if ($headerButton)
                 <div class="card-actions float-end">
@@ -22,6 +20,7 @@
                     </div>
                 </div>
             @endif
+            <h5 class="card-title">{{ $cardHeader }}</h5>
         </div>
     @endif
 
