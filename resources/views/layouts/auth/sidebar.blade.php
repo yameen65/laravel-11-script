@@ -1,15 +1,16 @@
 <nav id="sidebar" class="sidebar">
-    <a class="sidebar-brand" href="index.html">
+    <a class="sidebar-brand" href="{{ route('auth') }}">
         <svg>
             <use xlink:href="#ion-ios-pulse-strong"></use>
         </svg>
-        Spark
+        {{ config('app.name') }}
     </a>
     <div class="sidebar-content">
         <div class="sidebar-user">
-            <img src="img/avatars/avatar.jpg" class="img-fluid rounded-circle mb-2" alt="Linda Miller" />
-            <div class="fw-bold">Linda Miller</div>
-            <small>Front-end Developer</small>
+            <img src="img/avatars/avatar.jpg" class="img-fluid rounded-circle mb-2"
+                alt="{{ auth()->user()->full_name }}" />
+            <div class="fw-bold">{{ auth()->user()->full_name }}</div>
+            <small>{{ auth()->user()->email }}</small>
         </div>
 
         <ul class="sidebar-nav">

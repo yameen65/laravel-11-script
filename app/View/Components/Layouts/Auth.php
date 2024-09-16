@@ -9,13 +9,15 @@ use Illuminate\View\Component;
 class Auth extends Component
 {
     public $pageTitle = null;
+    public $subTitle = null;
 
     /**
      * Create a new component instance.
      */
-    public function __construct($pageTitle = null)
+    public function __construct($pageTitle = null, $subTitle = null)
     {
         $this->pageTitle = $pageTitle;
+        $this->subTitle = $subTitle == null ? "Welcome " . auth()->user()->full_name . " to " . config('app.name') : $subTitle;
     }
 
     /**
