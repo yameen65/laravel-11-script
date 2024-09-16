@@ -55,7 +55,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->attributes['first_name'] . ' ' . $this->attributes['last_name'];
     }
 
-    public function logo()
+    public function profile()
     {
         return $this->fileUrl('profile');
     }

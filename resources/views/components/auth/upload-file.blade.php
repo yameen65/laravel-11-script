@@ -1,5 +1,5 @@
 <div class="text-center">
-    <img id="profileImage" alt="Chris Wood" src="{{ auth()->user()->logo() }}" class="rounded-circle img-responsive mt-2"
+    <img id="profileImage" alt="Chris Wood" src="{{ auth()->user()->profile() }}" class="rounded-circle img-responsive mt-2"
         width="128" height="128" />
     <div class="mt-2">
         <span class="btn btn-primary" id="uploadButton"><i class="fas fa-upload"></i> Upload</span>

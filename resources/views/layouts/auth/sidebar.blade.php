@@ -7,7 +7,7 @@
     </a>
     <div class="sidebar-content">
         <div class="sidebar-user">
-            <img src="{{ auth()->user()->logo() }}" class="img-fluid rounded-circle mb-2"
+            <img src="{{ auth()->user()->profile() }}" class="img-fluid rounded-circle mb-2"
                 alt="{{ auth()->user()->full_name }}" />
             <div class="fw-bold">{{ auth()->user()->full_name }}</div>
             <small>{{ auth()->user()->email }}</small>

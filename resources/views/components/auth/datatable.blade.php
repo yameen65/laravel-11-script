@@ -7,11 +7,14 @@
 </table>
 
 @section('auth_scripts')
-    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+    {{-- <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script> --}}
 
     <script>
-        let table = new DataTable('#myTable', {
-            responsive: true
+        $("#myTable").DataTable({
+            responsive: true,
+            order: [
+                [1, "asc"]
+            ]
         });
     </script>
 @endsection
