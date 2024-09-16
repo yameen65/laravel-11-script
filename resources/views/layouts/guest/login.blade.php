@@ -2,18 +2,31 @@
 
 @include('layouts.guest.navigation')
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 mx-auto">
-            <div class="d-flex flex-column justify-content-center mastercolumndiv">
-                <div class="text-center mt-4 mt-mb-0 mb-md-2">
-                    <h3> {{ $pageTitle }} </h3>
-                </div>
+<main class="main h-100 w-100">
+    <div class="container h-100">
+        <div class="row">
+            <div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
+                <div class="d-table-cell align-middle">
+                    <div class="text-center mt-4">
+                        <h1 class="h2">{{ $pageTitle }}</h1>
+                        <p class="lead">{{ $subTitle }}</p>
+                    </div>
 
-                {{ $slot }}
+                    <x-auth.card>
+                        <div class="m-sm-4">
+                            <div class="text-center">
+                                <img src="{{ asset('assets/img/avatars/avatar.jpg') }}" alt="Linda Miller"
+                                    class="img-fluid rounded-circle" width="132" height="132" />
+                            </div>
+
+                            {{ $slot }}
+                        </div>
+                    </x-auth.card>
+
+                </div>
             </div>
         </div>
     </div>
-</div>
+</main>
 
 @include('layouts.guest.footer')

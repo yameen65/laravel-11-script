@@ -18,8 +18,6 @@
 </head>
 
 <body class="theme-blue">
-    <div class="splash active">
-        <div class="splash-icon"></div>
-    </div>
+    <x-splash-screen />
 
     <div class="wrapper">

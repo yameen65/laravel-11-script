@@ -21,4 +21,5 @@
     @yield('styles')
 </head>
 
-<body>
+<body class="theme-blue">
+    {{-- <x-splash-screen /> --}}

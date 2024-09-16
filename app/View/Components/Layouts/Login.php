@@ -9,13 +9,15 @@ use Illuminate\View\Component;
 class Login extends Component
 {
     public $pageTitle = '';
+    public $subTitle = '';
 
     /**
      * Create a new component instance.
      */
-    public function __construct($pageTitle)
+    public function __construct($pageTitle, $subTitle = null)
     {
         $this->pageTitle = $pageTitle;
+        $this->subTitle = $subTitle == null ? "Sign in to your account to continue" : $subTitle;
     }
 
     /**

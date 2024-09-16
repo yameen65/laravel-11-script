@@ -2,8 +2,7 @@
     @if ($label != null)
         <label for="{{ $id }}" class="form-label fs  fw-semibold">{{ $label }}</label>
     @endif
-    <input type='{{ $type }}'
-        class='form-control form-control-sm {{ $extraclasses }} @error($name)
+    <input type='{{ $type }}' class='form-control {{ $extraclasses }} @error($name)
     is-invalid
     @enderror'
         id='{{ $id }}' name='{{ $name }}' placeholder='{{ $place }}' {{ $extraAttributes }}

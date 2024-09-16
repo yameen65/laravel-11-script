@@ -38,16 +38,6 @@
 
             <div class="row">
                 <div class="col-12">
-                    @if (isset($sideButton))
-                        <div class="row mb-3">
-                            <div class="col-md-12">
-                                <div style="float:right;">
-                                    {{ $sideButton }}
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-
                     {{ $slot }}
                 </div>
             </div>
