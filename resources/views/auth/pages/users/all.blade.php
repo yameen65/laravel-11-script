@@ -18,8 +18,6 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Active Package</th>
-                            <th>Total Cvs</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -30,18 +28,6 @@
                                 </td>
                                 <td>{{ $user?->full_name }}</td>
                                 <td>{{ $user?->email }}</td>
-                                <td>
-                                    @if ($user->package == null)
-                                        No package activated
-                                    @else
-                                        <a href="{{ route('packages.show', $user?->package?->id) }}" target="_blank"
-                                            rel="noopener noreferrer">{{ $user?->package?->name }}</a>
-                                    @endif
-
-                                </td>
-
-                                <td> {{ $user?->cv_profiles->count() }}
-
                                 <td style="display: flex; justify-content: space-between; align-items: center;">
                                     <!-- View Icon -->
                                     @if (auth()->user()->can('view_user'))

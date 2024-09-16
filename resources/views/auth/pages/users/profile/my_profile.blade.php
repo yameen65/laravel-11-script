@@ -59,21 +59,16 @@
     @section('auth_scripts')
         <script>
             document.getElementById('uploadButton').addEventListener('click', function() {
-                // Trigger the file input click when the button is clicked
                 document.getElementById('fileInput').click();
             });
 
             document.getElementById('fileInput').addEventListener('change', function(event) {
-                // Get the selected file
                 const file = event.target.files[0];
                 if (file) {
-                    // Create a URL for the selected file
                     const reader = new FileReader();
                     reader.onload = function(e) {
-                        // Update the image source with the uploaded file's data
                         document.getElementById('profileImage').src = e.target.result;
                     };
-                    // Read the file as a data URL (base64 encoded)
                     reader.readAsDataURL(file);
                 }
             });
