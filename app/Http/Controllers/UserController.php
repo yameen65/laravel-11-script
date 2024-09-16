@@ -8,6 +8,7 @@ use App\Http\Requests\User\UserRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\User\UpdateProfileRequest;
+use App\Http\Requests\User\UserUpdateRequest;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Support\Facades\Auth;
 
@@ -103,7 +104,7 @@ class UserController extends Controller
      * @param Request Validation $validation
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, $id)
+    public function update(UserUpdateRequest $request, $id)
     {
         try {
             $this->_repo->update($id, UserDto::fromRequest($request->validated()));

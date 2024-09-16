@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <x-auth.upload-file />
+                    <x-auth.upload-file image="" />
                 </div>
             </div>
 

@@ -41,12 +41,9 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <x-auth.upload-file />
+                    <x-auth.upload-file image="{{ auth()->user()->profile() }}" />
                 </div>
             </div>
         </x-auth.form>
     </x-auth.card>
-
-    @section('auth_scripts')
-    @endsection
 </x-my-profile>
