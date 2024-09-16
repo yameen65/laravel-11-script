@@ -45,15 +45,18 @@
             <li class="sidebar-header">
                 Role and Permissions
             </li>
-            <li class="sidebar-item">
+            <li
+                class="sidebar-item {{ Str::startsWith(request()->route()->getName(), 'roles.') ? 'active' : '' }} {{ Str::startsWith(request()->route()->getName(), 'permissions.') ? 'active' : '' }}">
                 <a data-bs-target="#documentation" data-bs-toggle="collapse" class="sidebar-link collapsed">
                     <i class="align-middle me-2 fas fa-fw fa-book"></i> <span class="align-middle">Roles And
                         Permission</span>
                 </a>
                 <ul id="documentation" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-                    <li class="sidebar-item"><a class="sidebar-link" href="{{ route('roles.index') }}">Roles</a></li>
-                    <li class="sidebar-item"><a class="sidebar-link"
-                            href="{{ route('permissions.index') }}">Permissions</a></li>
+                    <li class="sidebar-item  {{ request()->route()->getName() == 'roles.index' ? 'active' : '' }}"><a
+                            class="sidebar-link" href="{{ route('roles.index') }}">Roles</a></li>
+                    <li
+                        class="sidebar-item {{ request()->route()->getName() == 'permissions.index' ? 'active' : '' }}">
+                        <a class="sidebar-link" href="{{ route('permissions.index') }}">Permissions</a></li>
                 </ul>
             </li>
         </ul>
