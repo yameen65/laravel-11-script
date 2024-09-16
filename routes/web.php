@@ -61,6 +61,8 @@ Route::group(
                 Route::get('profile', [UserController::class, 'editprofile'])->name('myprofile');
                 Route::put('edit-my-profile', [UserController::class, 'updatemyprofile'])->name('updatemyprofile');
 
+                Route::get('privacy-safety', [UserController::class, 'safety_privacy'])->name('safety_privacy');
+
                 Route::get('password-change', [ResetPasswordController::class, 'changePassword'])->name('change_password');
                 Route::post('change-password/update', [ResetPasswordController::class, 'updatePassword'])->name('update_password');
 

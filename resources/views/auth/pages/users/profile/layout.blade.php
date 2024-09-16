@@ -11,7 +11,8 @@
                         href="{{ route('change_password') }}">
                         Password
                     </a>
-                    <a class="list-group-item list-group-item-action" href="#">
+                    <a class="list-group-item list-group-item-action {{ request()->route()->getName() == 'safety_privacy' ? 'active' : '' }}"
+                        href="{{ route('safety_privacy') }}">
                         Privacy and safety
                     </a>
                     <a class="list-group-item list-group-item-action" href="#">

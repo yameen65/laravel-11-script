@@ -172,4 +172,9 @@ class UserController extends Controller
             }
         }
     }
+
+    public function safety_privacy()
+    {
+        return view($this->_directory . '.profile.privacy_safety');
+    }
 }

@@ -17,11 +17,8 @@
                     <a class="dropdown-item" href="{{ route('myprofile') }}"><i
                             class="align-middle me-1 fas fa-fw fa-user"></i>
                         View Profile</a>
-                    <a class="dropdown-item" href="#"><i class="align-middle me-1 fas fa-fw fa-comments"></i>
-                        Contacts</a>
-                    <a class="dropdown-item" href="#"><i class="align-middle me-1 fas fa-fw fa-chart-pie"></i>
-                        Analytics</a>
-                    <a class="dropdown-item" href="#"><i class="align-middle me-1 fas fa-fw fa-cogs"></i>
+                    <a class="dropdown-item" href="{{ route('safety_privacy') }}"><i
+                            class="align-middle me-1 fas fa-fw fa-cogs"></i>
                         Settings</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ route('logout') }}"><i
