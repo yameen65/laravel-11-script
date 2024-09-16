@@ -28,11 +28,11 @@
                 Menu
             </li>
             <li class="sidebar-item {{ Str::startsWith(request()->route()->getName(), 'users.') ? 'active' : '' }}">
-                <a data-bs-target="#ui" data-bs-toggle="collapse" class="sidebar-link collapsed">
+                <a data-bs-target="#users" data-bs-toggle="collapse" class="sidebar-link collapsed">
                     <i class="align-middle me-2 fas fa-fw fa-users"></i> <span class="align-middle">User
                         Interface</span>
                 </a>
-                <ul id="ui" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                <ul id="users" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                     <li class="sidebar-item {{ request()->route()->getName() == 'users.index' ? 'active' : '' }}">
                         <a class="sidebar-link" href="{{ route('users.index') }}">All</a>
                     </li>
@@ -43,18 +43,17 @@
             </li>
 
             <li class="sidebar-header">
-                Extras
+                Role and Permissions
             </li>
             <li class="sidebar-item">
                 <a data-bs-target="#documentation" data-bs-toggle="collapse" class="sidebar-link collapsed">
-                    <i class="align-middle me-2 fas fa-fw fa-book"></i> <span class="align-middle">Documentation</span>
+                    <i class="align-middle me-2 fas fa-fw fa-book"></i> <span class="align-middle">Roles And
+                        Permission</span>
                 </a>
                 <ul id="documentation" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-                    <li class="sidebar-item"><a class="sidebar-link" href="docs-getting-started.html">Getting
-                            Started</a></li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="docs-plugins.html">Plugins</a></li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="docs-changelog.html">Changelog</a>
-                    </li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{ route('roles.index') }}">Roles</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link"
+                            href="{{ route('permissions.index') }}">Permissions</a></li>
                 </ul>
             </li>
         </ul>
