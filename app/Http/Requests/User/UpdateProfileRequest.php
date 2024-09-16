@@ -3,6 +3,7 @@
 namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateProfileRequest extends FormRequest
 {
@@ -21,8 +22,20 @@ class UpdateProfileRequest extends FormRequest
      */
     public function rules(): array
     {
+        $userId = auth()->id();
+        $currentEmail = auth()->user()->email;
+
         return [
-            //
+            'f_name' => ['required', 'string', 'max:100'],
+            'l_name' => ['required', 'string', 'max:100'],
+            'username' => ['required', 'string', 'max:200', Rule::unique('users', 'username')->ignore($userId)],
+            'email' => ['required', 'email', 'max:200', function ($attribute, $value, $fail) use ($currentEmail) {
+                if ($value !== $currentEmail) {
+                    $fail('You cannot change your email. Please contact the admin!');
+                }
+            }],
+            'about' => ['required', 'string', 'max:250'],
+            'file' => ['nullable', 'image', 'mimes:jpeg,jpg,png', 'max:2048'],
         ];
     }
 }

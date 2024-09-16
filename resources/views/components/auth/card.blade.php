@@ -1,20 +1,31 @@
-<div class="card shadow border-0 h-100">
+<div class="card shadow border-0">
     @if ($cardHeader != null)
-        <div class="card-header text-white card_image">
+        <div class="card-header">
 
-            <div class="hstack gap-3">
-                {{ $cardHeader }}
+            <strong>{{ $cardHeader }}</strong>
 
-                @if ($headerButton)
-                    {{ $headerButton }}
-                @endif
+            @if ($headerButton)
+                <div class="card-actions float-end">
+                    <a href="javascript::void(0)" class="me-1" onclick="location.reload()">
+                        <i class="align-middle" data-feather="refresh-cw"></i>
+                    </a>
+                    <div class="d-inline-block dropdown show">
+                        <a href="#" data-bs-toggle="dropdown" data-bs-display="static">
+                            <i class="align-middle" data-feather="more-vertical"></i>
+                        </a>
 
-            </div>
-
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </div>
+                </div>
+            @endif
         </div>
     @endif
 
-    <div class="card-body">
+    <div class="card-body {{ $extraBodyClass }}">
         {{ $slot }}
     </div>
 </div>

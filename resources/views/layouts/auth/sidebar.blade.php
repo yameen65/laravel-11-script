@@ -7,7 +7,7 @@
     </a>
     <div class="sidebar-content">
         <div class="sidebar-user">
-            <img src="img/avatars/avatar.jpg" class="img-fluid rounded-circle mb-2"
+            <img src="{{ auth()->user()->logo() }}" class="img-fluid rounded-circle mb-2"
                 alt="{{ auth()->user()->full_name }}" />
             <div class="fw-bold">{{ auth()->user()->full_name }}</div>
             <small>{{ auth()->user()->email }}</small>
@@ -17,18 +17,13 @@
             <li class="sidebar-header">
                 Main
             </li>
-            <li class="sidebar-item active">
-                <a data-bs-target="#dashboards" data-bs-toggle="collapse" class="sidebar-link">
-                    <i class="align-middle me-2 fas fa-fw fa-home"></i> <span class="align-middle">Dashboards</span>
+
+            <li class="sidebar-item {{ request()->route()->getName() == 'auth' ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ route('auth') }}">
+                    <i class="align-middle me-2 fas fa-fw fa-home"></i> <span class="align-middle">Dashboard</span>
                 </a>
-                <ul id="dashboards" class="sidebar-dropdown list-unstyled collapse show" data-bs-parent="#sidebar">
-                    <li class="sidebar-item active"><a class="sidebar-link" href="dashboard-default.html">Default</a>
-                    </li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="dashboard-analytics.html">Analytics</a></li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="dashboard-e-commerce.html">E-commerce</a>
-                    </li>
-                </ul>
             </li>
+
             <li class="sidebar-item">
                 <a data-bs-target="#pages" data-bs-toggle="collapse" class="sidebar-link collapsed">
                     <i class="align-middle me-2 fas fa-fw fa-file"></i> <span class="align-middle">Pages</span>

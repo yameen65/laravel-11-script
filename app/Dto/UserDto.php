@@ -7,8 +7,9 @@ class UserDto
     public ?string $first_name;
     public ?string $last_name;
     public ?string $email;
-    public ?string $phone;
+    public ?string $username;
     public ?string $password;
+    public ?string $about;
     public $file;
 
     /**
@@ -18,11 +19,12 @@ class UserDto
      */
     public function __construct($request)
     {
-        $this->first_name = $request['first_name'] ?? null;
-        $this->last_name = $request['last_name'] ?? null;
-        $this->email = $request['email'] ?? null;
-        $this->phone = $request['phone'] ?? null;
-        $this->password = $request['password'] ?? null;
+        $this->first_name = isset($request['f_name']) ? $request['f_name'] : null;
+        $this->last_name = isset($request['l_name']) ? $request['l_name'] : null;
+        $this->email = isset($request['email']) ? $request['email'] : null;
+        $this->username = isset($request['username']) ? $request['username'] : null;
+        $this->password = isset($request['password']) ? $request['password'] : null;
+        $this->about = isset($request['about']) ? $request['about'] : null;
         $this->file = isset(request()->file) ? request()->file : null;
     }
 
@@ -33,13 +35,13 @@ class UserDto
 
     public function toArray()
     {
-        return [
-            'first_name' => $this->first_name,
-            'last_name' => $this->last_name,
-            'email' => $this->email,
-            'phone' => $this->phone,
-            'password' => $this->password,
-            'image' => $this->file
-        ];
+        $this->first_name == null ?: $data['first_name'] = $this->first_name;
+        $this->last_name == null ?: $data['last_name'] = $this->last_name;
+        $this->username == null ?: $data['username'] = $this->username;
+        $this->password == null ?: $data['password'] = $this->password;
+        $this->about == null ?: $data['about'] = $this->about;
+        $this->file == null ?: $data['image'] = $this->file;
+
+        return $data;
     }
 }

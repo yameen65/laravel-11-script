@@ -58,7 +58,7 @@ class UserController extends Controller
     {
         try {
             $this->_repo->store(UserDto::fromRequest($request->validated()));
-            return redirect()->route($this->_route . '.index')->with('success', 'Successfully created.');
+            return redirect()->route($this->_route . '.index')->with('success', 'User successfully created.');
         } catch (\Throwable $th) {
             return redirect()->route($this->_route . '.index')->with('error', 'Something went wrong..');
         }
@@ -107,7 +107,7 @@ class UserController extends Controller
     {
         try {
             $this->_repo->update($id, UserDto::fromRequest($request->validated()));
-            return redirect()->route($this->_route . '.index')->with('success', 'Updated succesfully');
+            return redirect()->route($this->_route . '.index')->with('success', 'User updated succesfully');
         } catch (\Throwable $th) {
             if ($th instanceof NotFoundHttpException) {
                 $message = $th->getMessage(); // Get the exception message
@@ -119,6 +119,18 @@ class UserController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param $id
+     * @return \Illuminate\Http\Response
+     */
+    public function editprofile()
+    {
+        $data = Auth::user();
+        return view($this->_directory . '.profile.my_profile', compact('data'));
+    }
+
+    /**
      * Update My profile.
      *
      * @param Request Validation $validation
@@ -126,13 +138,12 @@ class UserController extends Controller
      */
     public function updatemyprofile(UpdateProfileRequest $request)
     {
-
         try {
             $this->_repo->update(Auth::id(), UserDto::fromRequest($request->validated()));
-            return redirect()->route('myprofile')->with('success', 'Updated succesfully');
+            return redirect()->route('myprofile')->with('success', 'Profile Updated succesfully');
         } catch (\Throwable $th) {
+            $message = $th->getMessage();
             if ($th instanceof NotFoundHttpException) {
-                $message = $th->getMessage();
                 return redirect()->route('myprofile')->with('error', $message);
             } else {
                 return redirect()->route('myprofile')->with('error', 'Something went wrong..');
@@ -150,7 +161,7 @@ class UserController extends Controller
     {
         try {
             $this->_repo->destroy($id);
-            return redirect()->route($this->_route . '.index')->with('success', 'Deleted succesfully');
+            return redirect()->route($this->_route . '.index')->with('success', 'User deleted succesfully');
         } catch (\Throwable $th) {
             if ($th instanceof NotFoundHttpException) {
                 $message = $th->getMessage(); // Get the exception message
