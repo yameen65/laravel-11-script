@@ -2,7 +2,8 @@
 
 namespace App\Repositories;
 
-use App\Dto\SettingDto;
+use App\Constants\Constants;
+use App\Dto\SiteSettings\BasicInfoDto;
 use App\Helper\BaseQuery;
 use App\Helper\FileUpload;
 use App\Models\Setting;
@@ -11,7 +12,7 @@ class SettingRepository
 {
     use BaseQuery, FileUpload;
 
-    private $_imgPath = 'files/';
+    private $_imgPath = 'settings/';
     private $_model = null;
 
     /**
@@ -29,65 +30,30 @@ class SettingRepository
      */
     public function index()
     {
-        return $this->get_all($this->_model);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(SettingDto $data)
-    {
-        $dataArray = $data->toArray();
-        $image = $dataArray['image'];
-
-        unset($dataArray['image']);
-
-        $dataResult = $this->add($this->_model, $dataArray);
-
-        if ($image != null) {
-            $imageUploaded = $this->uploadFile($image, $this->_imgPath);
-            $dataResult->images()->create($imageUploaded);
-        }
-
-        return true;
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show($id)
-    {
-        return $this->get_by_id($this->_model, $id);
+        return $this->_model->first();
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update($id, SettingDto $data)
+    public function basic_info(BasicInfoDto $data)
     {
-        $result = $this->checkRecord($id);
-
         $dataArray = $data->toArray();
-        return $result->update($dataArray);
-    }
+        $dataResult = $this->index();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id)
-    {
-        $result = $this->checkRecord($id);
-        return $result->delete();
-    }
+        if (isset($dataArray['image'])) {
+            $existingImage = $dataResult->file()->where('type', 'logo')->first();
 
-    private function checkRecord($id)
-    {
-        $result = $this->show($id);
+            if ($existingImage) {
+                $this->deleteFile($existingImage->path);
+                $existingImage->delete();
+            }
 
-        if ($result == null) {
-            return null;
+            $profileUpload = $this->uploadFile($dataArray['image'], $this->_imgPath);
+            $profileUpload['type'] = Constants::LOGOTYPE;
+            $dataResult->file()->create($profileUpload);
         }
 
-        return $result;
+        return $dataResult->update($dataArray);
     }
 }

@@ -57,4 +57,14 @@ class Setting extends Model
         'twitter_redirect_url',
         'status'
     ];
+
+    public function favicon()
+    {
+        return $this->fileUrl('favicon');
+    }
+
+    public function logo()
+    {
+        return $this->fileUrl('logo');
+    }
 }

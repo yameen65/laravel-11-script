@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\SiteSettings;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SettingRequest extends FormRequest
+class BasicInfoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,10 @@ class SettingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'site_name' => ['required', 'max:200', 'string'],
+            'site_url' => ['required', 'url', 'max:200', 'string'],
+            'site_email' => ['required', 'max:200', 'string'],
+            'file' => ['nullable', 'image', 'mimes:jpeg,jpg,png', 'max:2048'],
         ];
     }
 }

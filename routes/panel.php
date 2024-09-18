@@ -41,8 +41,18 @@ Route::group(
             Route::post('assign/permission', 'assign_permission')->name('assign_permission')->middleware('can:assign_permission');
         });
 
-        Route::prefix('site-configuration')->as('settings.')->controller(SettingController::class)->group(function () {
-            Route::get('', 'index')->name('index')->can('site_setting');
+        Route::prefix('s')->as('settings.')->controller(SettingController::class)->group(function () {
+            Route::get('basic-info', 'index')->name('index')->can('site_setting');
+            Route::put('basic_info/update', 'basic_info')->name('basic_info')->can('site_setting');
+
+            Route::get('smtp', 'smtp_index')->name('smtp')->can('site_setting');
+            Route::put('smtp/update', 'smtp_update')->name('smtp_update')->can('site_setting');
+
+            Route::get('social-logins', 'social_logins_index')->name('social_logins')->can('site_setting');
+            Route::put('social-logins/update', 'social_logins_update')->name('social_logins_update')->can('site_setting');
+
+            Route::get('payments', 'payments_index')->name('payment')->can('site_setting');
+            Route::put('payments/update', 'payment_update')->name('payment_update')->can('site_setting');
         });
     }
 );

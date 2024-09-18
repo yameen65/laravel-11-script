@@ -7,6 +7,18 @@
                         href="{{ route('settings.index') }}">
                         Basic info
                     </a>
+                    <a class="list-group-item list-group-item-action {{ request()->route()->getName() == 'settings.smtp' ? 'active' : '' }}"
+                        href="{{ route('settings.smtp') }}">
+                        Email Setting
+                    </a>
+                    <a class="list-group-item list-group-item-action {{ request()->route()->getName() == 'settings.social_logins' ? 'active' : '' }}"
+                        href="{{ route('settings.social_logins') }}">
+                        Social Logins
+                    </a>
+                    <a class="list-group-item list-group-item-action {{ request()->route()->getName() == 'settings.payment' ? 'active' : '' }}"
+                        href="{{ route('settings.payment') }}">
+                        Payment
+                    </a>
                 </div>
             </x-auth.card>
         </div>
