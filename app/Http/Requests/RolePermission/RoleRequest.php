@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\RoleRequest;
+namespace App\Http\Requests\RolePermission;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,7 +24,8 @@ class RoleRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255', 'unique:roles,name'],
+            'title' => ['required', 'string', 'max:255'],
         ];
     }
 }

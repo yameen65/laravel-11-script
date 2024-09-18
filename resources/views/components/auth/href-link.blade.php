@@ -1,1 +1,1 @@
-<a class="forget-link pull-right {{ $class }}" href="{{ $link }}">{{ $value }}</a>
+<a class="{{ $class }}" href="{{ $link }}" {{ $extra }}>{!! $value !!}</a>

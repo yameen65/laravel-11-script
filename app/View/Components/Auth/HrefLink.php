@@ -11,15 +11,17 @@ class HrefLink extends Component
     public $link = "#";
     public $value = null;
     public $class = null;
+    public $extra = null;
 
     /**
      * Create a new component instance.
      */
-    public function __construct($linkClass = null, $linkHref = "#", $linkValue = null)
+    public function __construct($linkClass = null, $linkHref = "#", $linkValue = null, $extra = null)
     {
         $this->link = $linkHref;
         $this->value = $linkValue;
         $this->class = $linkClass;
+        $this->extra = $extra;
     }
 
     /**

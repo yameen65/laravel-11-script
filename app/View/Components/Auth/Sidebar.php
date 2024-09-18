@@ -7,6 +7,7 @@ use App\Repositories\RoleRepository;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use Spatie\Permission\Models\Role as ModelsRole;
 
 class Sidebar extends Component
 {
@@ -19,7 +20,7 @@ class Sidebar extends Component
      */
     public function __construct()
     {
-        $roleRepo = new RoleRepository(new Role());
+        $roleRepo = new RoleRepository(new ModelsRole());
         $this->roles = $roleRepo->get_all_roles();
     }
 

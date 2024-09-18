@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Dto\Permission\RoleDto;
-use App\Http\Requests\RoleRequest;
+use App\Dto\Permission\RoleUpdateDto;
+use App\Http\Requests\RolePermission\AssignPermission;
+use App\Http\Requests\RolePermission\RoleRequest;
+use App\Http\Requests\RolePermission\RoleUpdateRequest;
+use App\Repositories\PermissionRepository;
 use App\Repositories\RoleRepository;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -20,13 +24,11 @@ class RoleController extends Controller
 
     public function index()
     {
-        $data['all'] = $this->_repo->index();
-        return view($this->_directory . '.all', compact('data'));
-    }
+        $roles = $this->_repo->get_all_roles();
+        $permissionRepo = app(PermissionRepository::class);
+        $permissions = $permissionRepo->index();
 
-    public function create()
-    {
-        return view($this->_directory . '.create');
+        return view($this->_directory . '.all', compact('roles', 'permissions'));
     }
 
     public function store(RoleRequest $request)
@@ -35,40 +37,19 @@ class RoleController extends Controller
             $this->_repo->store(RoleDto::fromRequest($request->validated()));
             return redirect()->route($this->_route . '.index')->with('success', 'Successfully created.');
         } catch (\Throwable $th) {
+            dd($th->getMessage());
             return redirect()->route($this->_route . '.index')->with('error', 'Something went wrong..');
         }
     }
 
-    public function show($id)
-    {
-        $data = $this->_repo->show($id);
-
-        if ($data == null) {
-            abort(404);
-        }
-
-        return view($this->_directory . '.show', compact('data'));
-    }
-
-    public function edit($id)
-    {
-        $data = $this->_repo->show($id);
-
-        if ($data == null) {
-            abort(404);
-        }
-
-        return view($this->_directory . '.edit', compact('data'));
-    }
-
-    public function update(RoleRequest $request, $id)
+    public function update(RoleUpdateRequest $request, $id)
     {
         try {
-            $this->_repo->update($id, RoleDto::fromRequest($request->validated()));
+            $this->_repo->update($id, RoleUpdateDto::fromRequest($request->validated()));
             return redirect()->route($this->_route . '.index')->with('success', 'Updated succesfully');
         } catch (\Throwable $th) {
             if ($th instanceof NotFoundHttpException) {
-                $message = $th->getMessage(); // Get the exception message
+                $message = $th->getMessage();
                 return redirect()->route($this->_route . '.index')->with('error', $message);
             } else {
                 return redirect()->route($this->_route . '.index')->with('error', 'Something went wrong..');
@@ -83,10 +64,25 @@ class RoleController extends Controller
             return redirect()->route($this->_route . '.index')->with('success', 'Deleted succesfully');
         } catch (\Throwable $th) {
             if ($th instanceof NotFoundHttpException) {
-                $message = $th->getMessage(); // Get the exception message
+                $message = $th->getMessage();
                 return redirect()->route($this->_route . '.index')->with('error', $message);
             } else {
                 return redirect()->route($this->_route . '.index')->with('error', 'Something went wrong..');
+            }
+        }
+    }
+
+    public function assign_permission(AssignPermission $request)
+    {
+        try {
+            $data = $this->_repo->assign_permission($request->validated());
+            return response()->json($data, 200);
+        } catch (\Throwable $th) {
+            $message = $th->getMessage();
+            if ($th instanceof NotFoundHttpException) {
+                return response()->json(['warning' => $message], 400);
+            } else {
+                return response()->json(['error' => "Something went wroung..."], 500);
             }
         }
     }

@@ -19,7 +19,6 @@
 
 <body class="theme-blue">
 
-    {{-- @dd(auth()->user()->logo()) --}}
     <x-splash-screen />
 
     <div class="wrapper">

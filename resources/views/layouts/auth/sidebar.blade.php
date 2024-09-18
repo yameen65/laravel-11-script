@@ -33,7 +33,8 @@
                         Interface</span>
                 </a>
                 <ul id="users" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                    <li class="sidebar-item {{ request()->route()->getName() == 'users.index' ? 'active' : '' }}">
+                    <li
+                        class="sidebar-item {{ Str::startsWith(request()->route()->getName(), 'users.') ? 'active' : '' }}">
                         <a class="sidebar-link" href="{{ route('users.index') }}">All</a>
                     </li>
                     <li class="sidebar-item {{ request()->route()->getName() == 'users.create' ? 'active' : '' }}">
@@ -43,21 +44,13 @@
             </li>
 
             <li class="sidebar-header">
-                Role and Permissions
+                Configuration
             </li>
-            <li
-                class="sidebar-item {{ Str::startsWith(request()->route()->getName(), 'roles.') ? 'active' : '' }} {{ Str::startsWith(request()->route()->getName(), 'permissions.') ? 'active' : '' }}">
-                <a data-bs-target="#documentation" data-bs-toggle="collapse" class="sidebar-link collapsed">
-                    <i class="align-middle me-2 fas fa-fw fa-book"></i> <span class="align-middle">Roles And
-                        Permission</span>
+            <li class="sidebar-item {{ Str::startsWith(request()->route()->getName(), 'roles.') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ route('roles.index') }}">
+                    <i class="align-middle me-2 fas fa-fw fa-book"></i> <span class="align-middle">Roles &
+                        Permissions</span>
                 </a>
-                <ul id="documentation" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-                    <li class="sidebar-item  {{ request()->route()->getName() == 'roles.index' ? 'active' : '' }}"><a
-                            class="sidebar-link" href="{{ route('roles.index') }}">Roles</a></li>
-                    <li
-                        class="sidebar-item {{ request()->route()->getName() == 'permissions.index' ? 'active' : '' }}">
-                        <a class="sidebar-link" href="{{ route('permissions.index') }}">Permissions</a></li>
-                </ul>
             </li>
         </ul>
     </div>

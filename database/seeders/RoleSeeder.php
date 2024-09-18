@@ -16,7 +16,11 @@ class RoleSeeder extends Seeder
     {
         app()['cache']->forget('spatie.permission.cache');
 
-        Role::create(['name' => 'admin', 'title' => 'Admin']);
-        Role::create(['name' => 'user', 'title' => 'User']);
+        $admin = Role::create(['name' => 'admin', 'title' => 'Admin']);
+
+        $permissions = Permission::all();
+        $admin->syncPermissions($permissions);
+
+        $user = Role::create(['name' => 'user', 'title' => 'User']);
     }
 }

@@ -2,11 +2,9 @@
 
 namespace App\Dto\Permission;
 
-class RoleDto
+class RoleUpdateDto
 {
-    public readonly string $name;
     public readonly string $title;
-    public readonly string $guard_name;
 
     /**
      * Create a new controller instance.
@@ -15,9 +13,7 @@ class RoleDto
      */
     public function __construct($request)
     {
-        $this->name = $request['name'];
         $this->title = $request['title'];
-        $this->guard_name = 'web';
     }
 
     public static function fromRequest($request)
@@ -28,9 +24,7 @@ class RoleDto
     public function toArray()
     {
         $return = [
-            'name' => $this->name,
             'title' => $this->title,
-            'guard_name' => $this->guard_name,
         ];
 
         return $return;

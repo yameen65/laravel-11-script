@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css" />
 @endsection
 
-<table id="myTable" class="table table-striped table-bordered">
+<table id="myTable" class="table table-striped">
     {{ $slot }}
 </table>
 

@@ -2,9 +2,11 @@
 
 namespace App\Repositories;
 
-use App\Dto\RoleDto;
+use App\Dto\Permission\RoleDto;
+use App\Dto\Permission\RoleUpdateDto;
 use App\Helper\BaseQuery;
-use App\Models\Role;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class RoleRepository
 {
@@ -55,7 +57,7 @@ class RoleRepository
     /**
      * Update the specified resource in storage.
      */
-    public function update($id, RoleDto $data)
+    public function update($id, RoleUpdateDto $data)
     {
         $result = $this->checkRecord($id);
 
@@ -70,6 +72,20 @@ class RoleRepository
     {
         $result = $this->checkRecord($id);
         return $result->delete();
+    }
+
+    public function assign_permission($data)
+    {
+        $role = $this->checkRecord($data['role']);
+        $permission = Permission::where('id', $data['permission'])->first();
+
+        if ($data['status']) {
+            $permission->assignRole($role);
+            return ['success' => 'Permission assigned.'];
+        } else {
+            $role->revokePermissionTo($permission->id);
+            return ['warning' => "Permission removed."];
+        }
     }
 
     private function checkRecord($id)
