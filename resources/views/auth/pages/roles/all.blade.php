@@ -34,7 +34,7 @@
                             <th>Roles</th>
 
                             @foreach ($permissions as $permissionTh)
-                                <th>{{ $permissionTh->title }}</th>
+                                <th class="text-center">{{ $permissionTh->title }}</th>
                             @endforeach
 
                             <th>Action</th>

@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Dto\SiteSettings\BasicInfoDto;
 use App\Dto\SiteSettings\SmtpDto;
+use App\Dto\SiteSettings\SocialDto;
 use App\Repositories\SettingRepository;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SiteSettings\BasicInfoRequest;
 use App\Http\Requests\SiteSettings\SmtpRequest;
+use App\Http\Requests\SiteSettings\SocialLoginRequest;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -50,7 +52,6 @@ class SettingController extends Controller
             return redirect()->back()->with('success', 'Updated succesfully');
         } catch (\Throwable $th) {
             $message = $th->getMessage();
-            dd($message);
             if ($th instanceof NotFoundHttpException) {
                 return redirect()->back()->with('error', $message);
             } else {
@@ -65,7 +66,21 @@ class SettingController extends Controller
         return view($this->_directory . '.social_logins', compact('data'));
     }
 
-    public function social_logins_update() {}
+    public function social_logins_update(SocialLoginRequest $request)
+    {
+        try {
+            $this->_repo->social_update(SocialDto::fromRequest($request->validated()));
+            return redirect()->back()->with('success', 'Updated succesfully');
+        } catch (\Throwable $th) {
+            $message = $th->getMessage();
+            dd($message);
+            if ($th instanceof NotFoundHttpException) {
+                return redirect()->back()->with('error', $message);
+            } else {
+                return redirect()->back()->with('error', 'Something went wrong..');
+            }
+        }
+    }
 
     public function smtp_index()
     {

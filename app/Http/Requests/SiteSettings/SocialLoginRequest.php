@@ -22,7 +22,25 @@ class SocialLoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'factivate' => 'required|boolean',
+            'fapi' => 'required|string|min:32|max:64',
+            'fsecret' => 'required|string|min:32|max:64',
+            'furl' => 'required|url',
+
+            'gitactivate' => 'required|boolean',
+            'gitapi' => 'required|string|min:32|max:64',
+            'gitsecret' => 'required|string|min:32|max:64',
+            'giturl' => 'required|url',
+
+            'gactivate' => 'required|boolean',
+            'gapi' => 'required|string|min:32|max:64',
+            'gsecret' => 'required|string|min:32|max:64',
+            'gurl' => 'required|url',
+
+            'tactivate' => 'required|boolean',
+            'tapi' => 'required|string|min:32|max:64',
+            'tsecret' => 'required|string|min:32|max:64',
+            'turl' => 'required|url',
         ];
     }
 }
