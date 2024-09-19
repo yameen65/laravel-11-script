@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Constants\Constants;
 use App\Dto\SiteSettings\BasicInfoDto;
+use App\Dto\SiteSettings\SmtpDto;
 use App\Helper\BaseQuery;
 use App\Helper\FileUpload;
 use App\Models\Setting;
@@ -53,6 +54,14 @@ class SettingRepository
             $profileUpload['type'] = Constants::LOGOTYPE;
             $dataResult->file()->create($profileUpload);
         }
+
+        return $dataResult->update($dataArray);
+    }
+
+    public function smtp_update(SmtpDto $data)
+    {
+        $dataArray = $data->toArray();
+        $dataResult = $this->index();
 
         return $dataResult->update($dataArray);
     }

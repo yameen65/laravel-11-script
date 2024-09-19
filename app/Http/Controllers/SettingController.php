@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Dto\SiteSettings\BasicInfoDto;
+use App\Dto\SiteSettings\SmtpDto;
 use App\Repositories\SettingRepository;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SiteSettings\BasicInfoRequest;
+use App\Http\Requests\SiteSettings\SmtpRequest;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -71,7 +73,21 @@ class SettingController extends Controller
         return view($this->_directory . '.smtp', compact('data'));
     }
 
-    public function smtp_update() {}
+    public function smtp_update(SmtpRequest $request)
+    {
+        try {
+            $this->_repo->smtp_update(SmtpDto::fromRequest($request->validated()));
+            return redirect()->back()->with('success', 'Updated succesfully');
+        } catch (\Throwable $th) {
+            $message = $th->getMessage();
+            dd($message);
+            if ($th instanceof NotFoundHttpException) {
+                return redirect()->back()->with('error', $message);
+            } else {
+                return redirect()->back()->with('error', 'Something went wrong..');
+            }
+        }
+    }
 
     public function payments_index()
     {
