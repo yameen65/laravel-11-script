@@ -15,8 +15,7 @@
                     <x-auth.card>
                         <div class="m-sm-4">
                             <div class="text-center">
-                                <img src="{{ asset('assets/img/avatars/avatar.jpg') }}" alt="Linda Miller"
-                                    class="img-fluid rounded-circle" width="132" height="132" />
+                                <x-logo />
                             </div>
 
                             {{ $slot }}

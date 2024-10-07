@@ -1,10 +1,8 @@
 <nav id="sidebar" class="sidebar">
-    <a class="sidebar-brand" href="{{ route('auth') }}">
-        <svg>
-            <use xlink:href="#ion-ios-pulse-strong"></use>
-        </svg>
+    {{-- <a class="sidebar-brand" href="{{ route('auth') }}">
+        <x-logo />
         {{ config('app.name') }}
-    </a>
+    </a> --}}
     <div class="sidebar-content">
         <div class="sidebar-user">
             <img src="{{ auth()->user()->profile() }}" class="img-fluid rounded-circle mb-2"
@@ -50,6 +48,11 @@
                 <a class="sidebar-link" href="{{ route('roles.index') }}">
                     <i class="align-middle me-2 fas fa-fw fa-book"></i> <span class="align-middle">Roles &
                         Permissions</span>
+                </a>
+            </li>
+            <li class="sidebar-item {{ Str::startsWith(request()->route()->getName(), 'settings.') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ route('settings.index') }}">
+                    <i class="align-middle me-1 fas fa-fw fa-cogs"></i> <span class="align-middle">Site Settings</span>
                 </a>
             </li>
         </ul>
