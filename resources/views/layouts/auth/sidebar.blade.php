@@ -1,10 +1,8 @@
 <nav id="sidebar" class="sidebar">
-    <a class="sidebar-brand" href="{{ route('auth') }}">
-        <svg>
-            <use xlink:href="#ion-ios-pulse-strong"></use>
-        </svg>
+    {{-- <a class="sidebar-brand" href="{{ route('auth') }}">
+        <img src="{{ config('app.logo') }}" alt="site logo" srcset="" height="40">
         {{ config('app.name') }}
-    </a>
+    </a> --}}
     <div class="sidebar-content">
         <div class="sidebar-user">
             <img src="{{ auth()->user()->profile() }}" class="img-fluid rounded-circle mb-2"

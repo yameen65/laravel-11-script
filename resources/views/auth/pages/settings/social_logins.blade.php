@@ -1,9 +1,9 @@
 <x-settings title="Social Accounts" sub-title="Change your system settings">
-    <x-auth.card card-header="Social Accounts" header-button="true">
-        <x-auth.form form-action="{{ route('settings.social_logins_update') }}" enctype="true">
-            @method('PUT')
+    <x-auth.form form-action="{{ route('settings.social_logins_update') }}" enctype="true">
+        @method('PUT')
 
-            {{-- facebook details --}}
+        {{-- facebook details --}}
+        <x-auth.card card-header="Facebook details" header-button="true">
             <div class="row">
                 <div class="col-md-6">
                     <x-auth.input-field type="text" name="fapi" id="fapi" place="Enter api"
@@ -24,8 +24,10 @@
                     <x-auth.input-checkbox name="factivate" id="factivate" label="Activate Login?" value="" />
                 </div>
             </div>
+        </x-auth.card>
 
-            {{-- github details --}}
+        {{-- github details --}}
+        <x-auth.card card-header="Github details" header-button="">
             <div class="row">
                 <div class="col-md-6">
                     <x-auth.input-field type="text" name="gitapi" id="gitapi" place="Enter api"
@@ -46,8 +48,10 @@
                     <x-auth.input-checkbox name="gitactivate" id="gitactivate" label="Activate Login?" value="" />
                 </div>
             </div>
+        </x-auth.card>
 
-            {{-- google details --}}
+        {{-- google details --}}
+        <x-auth.card card-header="Google details" header-button="">
             <div class="row">
                 <div class="col-md-6">
                     <x-auth.input-field type="text" name="gapi" id="gapi" place="Enter api"
@@ -65,11 +69,14 @@
                         val="{{ $data->google_redirect_url }}" required="true" label="Google Redirect URL" />
                 </div>
                 <div class="col-md-6">
-                    <x-auth.input-checkbox name="gitactivate" id="gitactivate" label="Activate Login?" value="" />
+                    <x-auth.input-checkbox name="gitactivate" id="gitactivate" label="Activate Login?"
+                        value="" />
                 </div>
             </div>
+        </x-auth.card>
 
-            {{-- twitter details --}}
+        {{-- twitter details --}}
+        <x-auth.card card-header="Twitter details" header-button="">
             <div class="row">
                 <div class="col-md-6">
                     <x-auth.input-field type="text" name="tapi" id="tapi" place="Enter api"
@@ -97,6 +104,6 @@
                         btn-value="{{ __('Update Social Logins') }}" />
                 </div>
             </div>
-        </x-auth.form>
-    </x-auth.card>
+        </x-auth.card>
+    </x-auth.form>
 </x-settings>

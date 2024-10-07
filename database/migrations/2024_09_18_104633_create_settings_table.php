@@ -24,6 +24,7 @@ return new class extends Migration
             $table->text('google_analytics_code')->nullable();
 
             $table->string('default_country')->default('United States');
+            $table->string('default_language')->default('en');
 
             $table->string('default_currency')->default('2');
             $table->string('tax_rate')->nullable();

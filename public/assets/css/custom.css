@@ -1,11 +1,11 @@
 .header {
-    margin-bottom: 1.3rem !important;
+    margin-bottom: 1rem !important;
 }
 
 .content {
-    margin-top: 1.3rem !important;
+    margin-top: 1rem !important;
 }
 
 .wrapper:before {
-    height: 220px !important;
+    height: 200px !important;
 }
