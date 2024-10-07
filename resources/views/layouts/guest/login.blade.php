@@ -15,9 +15,7 @@
                     <x-auth.card>
                         <div class="m-sm-4">
                             <div class="text-center">
-                                <svg>
-                                    <use xlink:href="#ion-ios-pulse-strong"></use>
-                                </svg>
+                                <x-logo />
                             </div>
 
                             {{ $slot }}

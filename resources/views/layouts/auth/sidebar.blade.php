@@ -1,6 +1,6 @@
 <nav id="sidebar" class="sidebar">
     {{-- <a class="sidebar-brand" href="{{ route('auth') }}">
-        <img src="{{ config('app.logo') }}" alt="site logo" srcset="" height="40">
+        <x-logo />
         {{ config('app.name') }}
     </a> --}}
     <div class="sidebar-content">
