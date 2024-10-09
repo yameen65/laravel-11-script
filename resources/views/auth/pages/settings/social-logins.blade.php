@@ -4,13 +4,13 @@
 
         <x-auth.card card-header="" header-button="">
             <div class="accordion border border-1 mt-3" id="facebook">
-                <div class="bg-light p-2">
+                <div class="bg-light p-2" for="factivate" data-bs-toggle="collapse" data-bs-target="#facebookAcording"
+                    aria-expanded="true" aria-controls="facebookAcording" onclick="toggleCheckbox('factivate')">
                     <div class="float-end">
-                        <x-auth.input-checkbox data-bs-toggle="collapse" data-bs-target="#facebookAcording"
-                            aria-expanded="true" aria-controls="facebookAcording" margin-top="0" name="factivate"
-                            id="factivate" label="" value="" />
+                        <x-auth.input-checkbox margin-top="0" name="factivate" id="factivate" label=""
+                            value="" />
                     </div>
-                    <h5 class="card-title">Facebook Detail</h5>
+                    <h5 class="card-title"><i class="align-middle fab my-1 fa-facebook"></i> Facebook</h5>
                 </div>
 
                 <div id="facebookAcording" class="collapse p-2" aria-labelledby="headingOne" data-bs-parent="facebook">
@@ -36,13 +36,13 @@
             </div>
 
             <div class="accordion border border-1 mt-3" id="github">
-                <div class="bg-light p-2">
+                <div class="bg-light p-2" data-bs-toggle="collapse" data-bs-target="#githubAourding"
+                    aria-expanded="true" aria-controls="githubAourding" onclick="toggleCheckbox('gitactivate')">
                     <div class="float-end">
-                        <x-auth.input-checkbox data-bs-toggle="collapse" data-bs-target="#githubAourding"
-                            aria-expanded="true" aria-controls="githubAourding" margin-top="0" name="gitactivate"
-                            id="gitactivate" label="" value="" />
+                        <x-auth.input-checkbox margin-top="0" name="gitactivate" id="gitactivate" label=""
+                            value="" />
                     </div>
-                    <h5 class="card-title">Github Detail</h5>
+                    <h5 class="card-title"><i class="align-middle fab my-1 fa-github"></i> Github</h5>
                 </div>
 
                 <div id="githubAourding" class="collapse p-2" aria-labelledby="githubAourding" data-bs-parent="github">
@@ -67,13 +67,13 @@
             </div>
 
             <div class="accordion border border-1 mt-3" id="google">
-                <div class="bg-light p-2">
+                <div class="bg-light p-2" data-bs-toggle="collapse" data-bs-target="#googleAourding"
+                    aria-expanded="true" aria-controls="googleAourding" onclick="toggleCheckbox('gactivate')">
                     <div class="float-end">
-                        <x-auth.input-checkbox data-bs-toggle="collapse" data-bs-target="#googleAourding"
-                            aria-expanded="true" aria-controls="googleAourding" margin-top="0" name="gactivate"
-                            id="gactivate" label="" value="" />
+                        <x-auth.input-checkbox margin-top="0" name="gactivate" id="gactivate" label=""
+                            value="" />
                     </div>
-                    <h5 class="card-title">Google Detail</h5>
+                    <h5 class="card-title"><i class="align-middle fab my-1 fa-google"></i> Google</h5>
                 </div>
 
                 <div id="googleAourding" class="collapse p-2" aria-labelledby="googleAourding"
@@ -100,13 +100,13 @@
             </div>
 
             <div class="accordion border border-1 mt-3" id="twitter">
-                <div class="bg-light p-2">
+                <div class="bg-light p-2" data-bs-toggle="collapse" data-bs-target="#twitterAourding"
+                    aria-expanded="true" aria-controls="twitterAourding" onclick="toggleCheckbox('tactivate')">
                     <div class="float-end">
-                        <x-auth.input-checkbox data-bs-toggle="collapse" data-bs-target="#twitterAourding"
-                            aria-expanded="true" aria-controls="twitterAourding" margin-top="0" name="tactivate"
-                            id="tactivate" label="" value="" />
+                        <x-auth.input-checkbox margin-top="0" name="tactivate" id="tactivate" label=""
+                            value="" />
                     </div>
-                    <h5 class="card-title">Twitter Detail</h5>
+                    <h5 class="card-title"><i class="align-middle fab my-1 fa-twitter"></i> Twitter</h5>
                 </div>
 
                 <div id="twitterAourding" class="collapse p-2" aria-labelledby="twitterAourding"
@@ -133,7 +133,7 @@
                 </div>
             </div>
 
-            <div class="row mt-3">
+            <div class="row mt-3 float-end">
                 <div class="col-md-12">
                     <x-auth.input-button btn-class="" btn-type="submit"
                         btn-value="{{ __('Update Social Logins') }}" />
@@ -141,4 +141,12 @@
             </div>
         </x-auth.card>
     </x-auth.form>
+
+    <script>
+        function toggleCheckbox(id) {
+            const checkbox = document.getElementById(id);
+            checkbox.checked = !checkbox.checked; // Toggle checkbox state
+            checkbox.dispatchEvent(new Event('change')); // Trigger change event if needed
+        }
+    </script>
 </x-settings>
