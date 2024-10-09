@@ -6,7 +6,6 @@ use App\Constants\Constants;
 use App\Dto\UserDto;
 use App\Models\User;
 use App\Helper\BaseQuery;
-use App\Helper\Helpers;
 use App\Helper\FileUpload;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
@@ -14,7 +13,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class UserRepository
 {
-    use BaseQuery, FileUpload, Helpers;
+    use BaseQuery, FileUpload;
 
     private $_imgPath = 'users/';
     private $_model = null;

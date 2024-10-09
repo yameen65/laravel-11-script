@@ -1,5 +1,5 @@
-<x-settings title="Site info" sub-title="Change your system settings">
-    <x-auth.card card-header="Basic info" header-button="true">
+<x-settings title="General Settings" sub-title="Change your system settings">
+    <x-auth.card card-header="General Settings" header-button="true">
         <x-auth.form form-action="{{ route('settings.basic_info') }}" enctype="true">
             @method('PUT')
 

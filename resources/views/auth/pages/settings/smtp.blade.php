@@ -1,5 +1,5 @@
-<x-settings title="Email Configuration" sub-title="Change your system settings">
-    <x-auth.card card-header="Email Configuration" header-button="true">
+<x-settings title="Email Configuration" sub-title="Update your SMTP details to send emails to your users">
+    <x-auth.card card-header="SMTP Configuration" header-button="true">
         <x-auth.form form-action="{{ route('settings.smtp_update') }}" enctype="true">
             @method('PUT')
 

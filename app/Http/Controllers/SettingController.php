@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use App\Dto\SiteSettings\BasicInfoDto;
 use App\Dto\SiteSettings\SmtpDto;
 use App\Dto\SiteSettings\SocialDto;
+use App\Helper\Exception;
 use App\Repositories\SettingRepository;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SiteSettings\BasicInfoRequest;
 use App\Http\Requests\SiteSettings\SmtpRequest;
 use App\Http\Requests\SiteSettings\SocialLoginRequest;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class SettingController extends Controller
 {
@@ -33,10 +33,16 @@ class SettingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($blade)
     {
-        $data = $this->_repo->index();
-        return view($this->_directory . '.setting', compact('data'));
+        try {
+            $view = $this->_directory . '.' . $blade;
+
+            $data = $this->_repo->index();
+            return view($view, compact('data'));
+        } catch (\Throwable $th) {
+            return Exception::handle($th);
+        }
     }
 
     /**
@@ -51,19 +57,8 @@ class SettingController extends Controller
             $this->_repo->basic_info(BasicInfoDto::fromRequest($request->validated()));
             return redirect()->back()->with('success', 'Updated succesfully');
         } catch (\Throwable $th) {
-            $message = $th->getMessage();
-            if ($th instanceof NotFoundHttpException) {
-                return redirect()->back()->with('error', $message);
-            } else {
-                return redirect()->back()->with('error', 'Something went wrong..');
-            }
+            return Exception::handle($th);
         }
-    }
-
-    public function social_logins_index()
-    {
-        $data = $this->_repo->index();
-        return view($this->_directory . '.social_logins', compact('data'));
     }
 
     public function social_logins_update(SocialLoginRequest $request)
@@ -72,20 +67,8 @@ class SettingController extends Controller
             $this->_repo->social_update(SocialDto::fromRequest($request->validated()));
             return redirect()->back()->with('success', 'Updated succesfully');
         } catch (\Throwable $th) {
-            $message = $th->getMessage();
-            dd($message);
-            if ($th instanceof NotFoundHttpException) {
-                return redirect()->back()->with('error', $message);
-            } else {
-                return redirect()->back()->with('error', 'Something went wrong..');
-            }
+            return Exception::handle($th);
         }
-    }
-
-    public function smtp_index()
-    {
-        $data = $this->_repo->index();
-        return view($this->_directory . '.smtp', compact('data'));
     }
 
     public function smtp_update(SmtpRequest $request)
@@ -94,21 +77,19 @@ class SettingController extends Controller
             $this->_repo->smtp_update(SmtpDto::fromRequest($request->validated()));
             return redirect()->back()->with('success', 'Updated succesfully');
         } catch (\Throwable $th) {
-            $message = $th->getMessage();
-            dd($message);
-            if ($th instanceof NotFoundHttpException) {
-                return redirect()->back()->with('error', $message);
-            } else {
-                return redirect()->back()->with('error', 'Something went wrong..');
-            }
+            return Exception::handle($th);
         }
     }
 
-    public function payments_index()
-    {
-        $data = $this->_repo->index();
-        return view($this->_directory . '.payments', compact('data'));
-    }
-
     public function payments_update() {}
+
+    public function clear_cache()
+    {
+        try {
+            $this->_repo->clear_cache();
+            return redirect()->back()->with('success', 'All cache cleared for your website.');
+        } catch (\Throwable $th) {
+            return Exception::handle($th);
+        }
+    }
 }
