@@ -2,8 +2,8 @@
     <x-auth.form form-action="{{ route('settings.social_logins_update') }}" enctype="true">
         @method('PUT')
 
-        <x-auth.card card-header="" header-button="">
-            <div class="accordion border border-1 mt-3" id="facebook">
+        <x-auth.card card-header="Social Accounts" header-button="true">
+            <div class="accordion border border-1" id="facebook">
                 <div class="bg-light p-2" for="factivate" data-bs-toggle="collapse" data-bs-target="#facebookAcording"
                     aria-expanded="true" aria-controls="facebookAcording" onclick="toggleCheckbox('factivate')">
                     <div class="float-end">

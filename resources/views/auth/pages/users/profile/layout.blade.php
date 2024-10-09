@@ -1,34 +1,38 @@
 <x-layouts.auth page-title="{{ $title }}" sub-title="{{ $subTitle }}">
     <div class="row">
         <div class="col-md-4 col-xl-3">
-            <x-auth.card card-header="Profile Setting" extra-body-class="p-0">
+            <x-auth.card extra-body-class="p-0">
+                <x-slot:card-header>
+                    <i class="align-middle me-1 fas fa-fw fa-user-edit"></i> Profile Settings
+                </x-slot>
+
                 <div class="list-group list-group-flush" role="tablist">
                     <a class="list-group-item list-group-item-action {{ request()->route()->getName() == 'myprofile' ? 'active' : '' }}"
                         href="{{ route('myprofile') }}">
-                        Account
+                        <i class="align-middle me-1 fas fa-fw fa-id-card"></i> Account
                     </a>
                     <a class="list-group-item list-group-item-action {{ request()->route()->getName() == 'change_password' ? 'active' : '' }}"
                         href="{{ route('change_password') }}">
-                        Password
+                        <i class="align-middle me-1 fas fa-fw fa-lock"></i> Password
                     </a>
                     <a class="list-group-item list-group-item-action {{ request()->route()->getName() == 'safety_privacy' ? 'active' : '' }}"
                         href="{{ route('safety_privacy') }}">
-                        Privacy and safety
+                        <i class="align-middle me-1 fas fa-fw fa-shield-alt"></i> Privacy and safety
                     </a>
                     <a class="list-group-item list-group-item-action" href="#">
-                        Email notifications
+                        <i class="align-middle me-1 fas fa-fw fa-bell"></i> Email notifications
                     </a>
                     <a class="list-group-item list-group-item-action" href="#">
-                        Web notifications
+                        <i class="align-middle me-1 fas fa-fw fa-broadcast-tower"></i> Web notifications
                     </a>
                     <a class="list-group-item list-group-item-action" href="#">
-                        Widgets
+                        <i class="align-middle me-1 fas fa-fw fa-th-large"></i> Widgets
                     </a>
                     <a class="list-group-item list-group-item-action" href="#">
-                        Your data
+                        <i class="align-middle me-1 fas fa-fw fa-chart-line"></i> Your data
                     </a>
                     <a class="list-group-item list-group-item-action" href="#">
-                        Delete account
+                        <i class="align-middle me-1 fas fa-fw fa-trash"></i> Delete account
                     </a>
                 </div>
             </x-auth.card>
