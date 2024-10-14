@@ -23,25 +23,61 @@ class SocialLoginRequest extends FormRequest
     {
         return [
             'factivate' => 'nullable|boolean',
-            'fapi' => 'required|string|min:32|max:64',
-            'fsecret' => 'required|string|min:32|max:64',
-            'furl' => 'required|url',
-
             'gitactivate' => 'nullable|boolean',
-            'gitapi' => 'required|string|min:32|max:64',
-            'gitsecret' => 'required|string|min:32|max:64',
-            'giturl' => 'required|url',
-
             'gactivate' => 'nullable|boolean',
-            'gapi' => 'required|string|min:32|max:64',
-            'gsecret' => 'required|string|min:32|max:64',
-            'gurl' => 'required|url',
-
             'tactivate' => 'nullable|boolean',
-            'tapi' => 'required|string|min:32|max:64',
-            'tsecret' => 'required|string|min:32|max:64',
-            'turl' => 'required|url',
         ];
+    }
+
+    public function withValidator($validator)
+    {
+        $validator->sometimes('fapi', 'required|string|min:32|max:64', function ($input) {
+            return $input->factivate;
+        });
+
+        $validator->sometimes('fsecret', 'required|string|min:32|max:64', function ($input) {
+            return $input->factivate;
+        });
+
+        $validator->sometimes('furl', 'required|url', function ($input) {
+            return $input->factivate;
+        });
+
+        $validator->sometimes('gitapi', 'required|string|min:32|max:64', function ($input) {
+            return $input->gitactivate;
+        });
+
+        $validator->sometimes('gitsecret', 'required|string|min:32|max:64', function ($input) {
+            return $input->gitactivate;
+        });
+
+        $validator->sometimes('giturl', 'required|url', function ($input) {
+            return $input->gitactivate;
+        });
+
+        $validator->sometimes('gapi', 'required|string|min:32|max:64', function ($input) {
+            return $input->gactivate;
+        });
+
+        $validator->sometimes('gsecret', 'required|string|min:32|max:64', function ($input) {
+            return $input->gactivate;
+        });
+
+        $validator->sometimes('gurl', 'required|url', function ($input) {
+            return $input->gactivate;
+        });
+
+        $validator->sometimes('tapi', 'required|string|min:32|max:64', function ($input) {
+            return $input->tactivate;
+        });
+
+        $validator->sometimes('tsecret', 'required|string|min:32|max:64', function ($input) {
+            return $input->tactivate;
+        });
+
+        $validator->sometimes('turl', 'required|url', function ($input) {
+            return $input->tactivate;
+        });
     }
 
     /**

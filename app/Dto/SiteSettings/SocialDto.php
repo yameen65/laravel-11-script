@@ -31,25 +31,33 @@ class SocialDto
      */
     public function __construct($request)
     {
-        $this->facebook_active = $request['factivate'];
-        $this->facebook_api_key = $request['fapi'];
-        $this->facebook_api_secret = $request['fsecret'];
-        $this->facebook_redirect_url = $request['furl'];
+        if (isset($request['factivate'])) {
+            $this->facebook_active = $request['factivate'];
+            $this->facebook_api_key = $request['fapi'];
+            $this->facebook_api_secret = $request['fsecret'];
+            $this->facebook_redirect_url = $request['furl'];
+        }
 
-        $this->github_active = $request['gitactivate'];
-        $this->github_api_key = $request['gitapi'];
-        $this->github_api_secret = $request['gitsecret'];
-        $this->github_redirect_url = $request['giturl'];
+        if (isset($request['gitactivate'])) {
+            $this->github_active = $request['gitactivate'];
+            $this->github_api_key = $request['gitapi'];
+            $this->github_api_secret = $request['gitsecret'];
+            $this->github_redirect_url = $request['giturl'];
+        }
 
-        $this->google_active = $request['gactivate'];
-        $this->google_api_key = $request['gapi'];
-        $this->google_api_secret = $request['gsecret'];
-        $this->google_redirect_url = $request['gurl'];
+        if (isset($request['gactivate'])) {
+            $this->google_active = $request['gactivate'];
+            $this->google_api_key = $request['gapi'];
+            $this->google_api_secret = $request['gsecret'];
+            $this->google_redirect_url = $request['gurl'];
+        }
 
-        $this->twitter_active = $request['tactivate'];
-        $this->twitter_api_key = $request['tapi'];
-        $this->twitter_api_secret = $request['tsecret'];
-        $this->twitter_redirect_url = $request['turl'];
+        if (isset($request['tactivate'])) {
+            $this->twitter_active = $request['tactivate'];
+            $this->twitter_api_key = $request['tapi'];
+            $this->twitter_api_secret = $request['tsecret'];
+            $this->twitter_redirect_url = $request['turl'];
+        }
     }
 
     public static function fromRequest($request)
@@ -59,26 +67,37 @@ class SocialDto
 
     public function toArray()
     {
-        return [
-            'facebook_api_key' => $this->facebook_api_key,
-            'facebook_api_secret' => $this->facebook_api_secret,
-            'facebook_redirect_url' => $this->facebook_redirect_url,
-            'facebook_active' => $this->facebook_active,
+        $data = [];
 
-            'github_api_key' => $this->github_api_key,
-            'github_api_secret' => $this->github_api_secret,
-            'github_redirect_url' => $this->github_redirect_url,
-            'github_active' => $this->github_active,
+        $data['facebook_active'] = isset(request()['factivate']) ? 1 : 0;
+        $data['github_active'] = isset(request()['gitactivate']) ? 1 : 0;
+        $data['google_active'] = isset(request()['gactivate']) ? 1 : 0;
+        $data['twitter_active'] = isset(request()['tactivate']) ? 1 : 0;
 
-            'google_api_key' => $this->google_api_key,
-            'google_api_secret' => $this->google_api_secret,
-            'google_redirect_url' => $this->google_redirect_url,
-            'google_active' => $this->google_active,
+        if (isset(request()['factivate'])) {
+            $data['facebook_api_key'] = $this->facebook_api_key;
+            $data['facebook_api_secret'] = $this->facebook_api_secret;
+            $data['facebook_redirect_url'] = $this->facebook_redirect_url;
+        }
 
-            'twitter_api_key' => $this->twitter_api_key,
-            'twitter_api_secret' => $this->twitter_api_secret,
-            'twitter_redirect_url' => $this->twitter_redirect_url,
-            'twitter_active' => $this->twitter_active,
-        ];
+        if (isset(request()['gitactivate'])) {
+            $data['github_api_key'] = $this->github_api_key;
+            $data['github_api_secret'] = $this->github_api_secret;
+            $data['github_redirect_url'] = $this->github_redirect_url;
+        }
+
+        if (isset(request()['gactivate'])) {
+            $data['google_api_key'] = $this->google_api_key;
+            $data['google_api_secret'] = $this->google_api_secret;
+            $data['google_redirect_url'] = $this->google_redirect_url;
+        }
+
+        if (isset(request()['tactivate'])) {
+            $data['twitter_api_key'] = $this->twitter_api_key;
+            $data['twitter_api_secret'] = $this->twitter_api_secret;
+            $data['twitter_redirect_url'] = $this->twitter_redirect_url;
+        }
+
+        return $data;
     }
 }
