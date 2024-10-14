@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Constants\Constants;
 use App\Dto\SiteSettings\BasicInfoDto;
+use App\Dto\SiteSettings\RegisterDto;
 use App\Dto\SiteSettings\SmtpDto;
 use App\Dto\SiteSettings\SocialDto;
 use App\Helper\BaseQuery;
@@ -69,6 +70,14 @@ class SettingRepository
     }
 
     public function social_update(SocialDto $data)
+    {
+        $dataArray = $data->toArray();
+        $dataResult = $this->index();
+
+        return $dataResult->update($dataArray);
+    }
+
+    public function register_update(RegisterDto $data)
     {
         $dataArray = $data->toArray();
         $dataResult = $this->index();

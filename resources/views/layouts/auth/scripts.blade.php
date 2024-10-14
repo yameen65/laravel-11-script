@@ -26,7 +26,9 @@
         showToaster('warning', '{{ session('warning') }}', 'Warning');
     @endif
 </script>
-@livewireScripts
+
+
+<script src="{{ asset('vendor/livewire/livewire.js') }}"></script>
 
 </body>
 

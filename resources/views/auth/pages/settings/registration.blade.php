@@ -14,12 +14,17 @@
 
             <div class="bg-light p-2 mt-3">
                 <div class="float-end">
-                    <x-auth.input-checkbox margin-top="0" name="on_boarding" id="on_boarding" label=""
+                    <x-auth.input-checkbox margin-top="0" name="boarding" id="boarding" label=""
                         value="{{ $data['on_boarding'] == 1 ? 1 : 0 }}" />
                 </div>
-                <label class="card-title h5" for="on_boarding">Enable User On-Boarding</label>
+                <label class="card-title h5" for="boarding">Enable User On-Boarding</label>
             </div>
 
+            <div class="row mt-3 float-end">
+                <div class="col-md-12">
+                    <x-auth.input-button btn-class="" btn-type="submit" btn-value="{{ __('Update Registration') }}" />
+                </div>
+            </div>
         </x-auth.form>
     </x-auth.card>
 </x-settings>

@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Dto\SiteSettings\BasicInfoDto;
+use App\Dto\SiteSettings\RegisterDto;
 use App\Dto\SiteSettings\SmtpDto;
 use App\Dto\SiteSettings\SocialDto;
 use App\Helper\Exception;
 use App\Repositories\SettingRepository;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SiteSettings\BasicInfoRequest;
+use App\Http\Requests\SiteSettings\RegisterRequest;
 use App\Http\Requests\SiteSettings\SmtpRequest;
 use App\Http\Requests\SiteSettings\SocialLoginRequest;
 use Illuminate\Http\Request;
@@ -81,7 +83,15 @@ class SettingController extends Controller
         }
     }
 
-    public function registeration_update() {}
+    public function registeration_update(RegisterRequest $request)
+    {
+        try {
+            $this->_repo->register_update(RegisterDto::fromRequest($request->validated()));
+            return redirect()->back()->with('success', 'Updated succesfully');
+        } catch (\Throwable $th) {
+            return Exception::handle($th);
+        }
+    }
 
     public function payments_update() {}
 

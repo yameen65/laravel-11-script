@@ -17,8 +17,7 @@
                         href="{{ route('settings.index', 'smtp') }}">
                         <i class="align-middle me-1 fas fa-fw fa-envelope"></i> SMTP
                     </a>
-                    <a wire:navigate
-                        class="list-group-item list-group-item-action {{ request()->blade == 'social-logins' ? 'active' : '' }}"
+                    <a class="list-group-item list-group-item-action {{ request()->blade == 'social-logins' ? 'active' : '' }}"
                         href="{{ route('settings.index', 'social-logins') }}">
 
                         <i class="align-middle me-1 fas fa-fw fa-sign-in-alt"></i> Social Logins
