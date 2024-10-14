@@ -1,6 +1,7 @@
 </div>
 
 <script src="{{ asset('assets/js/app.js') }}"></script>
+
 @yield('auth_scripts')
 
 <script>
@@ -25,6 +26,7 @@
         showToaster('warning', '{{ session('warning') }}', 'Warning');
     @endif
 </script>
+@livewireScripts
 
 </body>
 
