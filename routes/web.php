@@ -4,7 +4,6 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Auth;
 use Inaam\Installer\Middleware\ApplicationStatus;
 
 // Route::middleware(ApplicationStatus::class)->group(function () {
@@ -42,5 +41,3 @@ Route::prefix('/account/')->group(function () {
         return view('auth.verify');
     })->name('verify_email')->middleware('CheckVerifiedAccount');
 });
-
-Auth::routes(['verify' => true, 'login' => false, 'register' => false, 'logout' => false]);

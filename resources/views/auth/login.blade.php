@@ -32,12 +32,15 @@
         </div>
     </x-auth.form>
 
-    <div class="text-center ">
-        <p class="mb-0">
-            {{ __('login.dont_have_account') }}
-            <x-auth.href-link link-href="{{ route('register') }}" link-value="{{ __('login.sign_up') }}" />
-        </p>
-    </div>
+    @if (Route::has('register'))
+        <div class="text-center ">
+            <p class="mb-0">
+                {{ __('login.dont_have_account') }}
+                <x-auth.href-link link-href="{{ route('register') }}" link-value="{{ __('login.sign_up') }}" />
+            </p>
+        </div>
+    @endif
+
     @if (Route::has('password.request'))
         <div class="text-center mt-3">
             <x-auth.href-link link-href="{{ route('password.request') }}"

@@ -4,11 +4,13 @@ namespace App\Repositories;
 
 use App\Constants\Constants;
 use App\Dto\SiteSettings\BasicInfoDto;
+use App\Dto\SiteSettings\RegisterDto;
 use App\Dto\SiteSettings\SmtpDto;
 use App\Dto\SiteSettings\SocialDto;
 use App\Helper\BaseQuery;
 use App\Helper\FileUpload;
 use App\Models\Setting;
+use Illuminate\Support\Facades\Artisan;
 
 class SettingRepository
 {
@@ -73,5 +75,24 @@ class SettingRepository
         $dataResult = $this->index();
 
         return $dataResult->update($dataArray);
+    }
+
+    public function register_update(RegisterDto $data)
+    {
+        $dataArray = $data->toArray();
+        $dataResult = $this->index();
+
+        return $dataResult->update($dataArray);
+    }
+
+    public function clear_cache()
+    {
+        Artisan::call('config:cache');
+        Artisan::call('cache:clear');
+        Artisan::call('route:clear');
+        Artisan::call('view:clear');
+        Artisan::call('optimize:clear');
+
+        return true;
     }
 }

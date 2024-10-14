@@ -14,11 +14,12 @@ class InputCheckbox extends Component
     public $value;
     public $required;
     public $extraclasses;
+    public $marginTop;
 
     /**
      * Create a new component instance.
      */
-    public function __construct($name, $id, $label, $value = null, $required = null, $extraclasses = null)
+    public function __construct($name, $id, $label, $value = null, $required = null, $extraclasses = null, $marginTop = '3')
     {
         $this->name = $name;
         $this->id = $id;
@@ -26,6 +27,7 @@ class InputCheckbox extends Component
         $this->value = $value;
         $this->required = $required;
         $this->extraclasses = $extraclasses;
+        $this->marginTop = "mt-" . $marginTop;
     }
 
     /**

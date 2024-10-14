@@ -51,7 +51,7 @@
                 </a>
             </li>
             <li class="sidebar-item {{ Str::startsWith(request()->route()->getName(), 'settings.') ? 'active' : '' }}">
-                <a class="sidebar-link" href="{{ route('settings.index') }}">
+                <a class="sidebar-link" href="{{ route('settings.index', 'basic-info') }}">
                     <i class="align-middle me-1 fas fa-fw fa-cogs"></i> <span class="align-middle">Site Settings</span>
                 </a>
             </li>

@@ -41,18 +41,15 @@ Route::group(
             Route::post('assign/permission', 'assign_permission')->name('assign_permission')->middleware('can:assign_permission');
         });
 
-        Route::prefix('s')->as('settings.')->controller(SettingController::class)->group(function () {
-            Route::get('basic-info', 'index')->name('index')->can('site_setting');
-            Route::put('basic_info/update', 'basic_info')->name('basic_info')->can('site_setting');
+        Route::prefix('s')->as('settings.')->middleware('can:site_setting')->controller(SettingController::class)->group(function () {
 
-            Route::get('smtp', 'smtp_index')->name('smtp')->can('site_setting');
-            Route::put('smtp/update', 'smtp_update')->name('smtp_update')->can('site_setting');
+            Route::get('{blade}', 'index')->name('index');
 
-            Route::get('social-logins', 'social_logins_index')->name('social_logins')->can('site_setting');
-            Route::put('social-logins/update', 'social_logins_update')->name('social_logins_update')->can('site_setting');
-
-            Route::get('payments', 'payments_index')->name('payment')->can('site_setting');
-            Route::put('payments/update', 'payment_update')->name('payment_update')->can('site_setting');
+            Route::put('basic_info/update', 'basic_info')->name('basic_info');
+            Route::put('smtp/update', 'smtp_update')->name('smtp_update');
+            Route::put('social-logins/update', 'social_logins_update')->name('social_logins_update');
+            Route::put('registration/update', 'registeration_update')->name('registeration_update');
+            Route::post('clear-cache', 'clear_cache')->name('clear_cache');
         });
     }
 );
