@@ -67,6 +67,9 @@ return new class extends Migration
             $table->text('twitter_api_secret')->nullable();
             $table->text('twitter_redirect_url')->nullable();
 
+            $table->string('registration')->default(1);
+            $table->string('on_boarding')->default(0);
+
             $table->string('status')->default(1);
 
             $table->timestamps();

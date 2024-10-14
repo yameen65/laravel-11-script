@@ -81,6 +81,8 @@ class SettingController extends Controller
         }
     }
 
+    public function registeration_update() {}
+
     public function payments_update() {}
 
     public function clear_cache()

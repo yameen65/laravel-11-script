@@ -55,6 +55,8 @@ class Setting extends Model
         'twitter_api_key',
         'twitter_api_secret',
         'twitter_redirect_url',
+        'registration',
+        'on_boarding',
         'status'
     ];
 

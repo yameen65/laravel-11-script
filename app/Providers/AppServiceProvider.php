@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 use App\Helper\Helpers;
 use App\Repositories\SettingRepository;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Auth;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -40,6 +41,8 @@ class AppServiceProvider extends ServiceProvider
                 ->group(base_path('routes/panel.php'));
 
             $this->configSet();
+
+            Auth::routes(['verify' => true, 'login' => false, 'register' => false, 'logout' => false]);
         } else {
             dd('sdf');
         }
