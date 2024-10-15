@@ -11,6 +11,7 @@ use App\Helper\Helpers;
 use App\Repositories\SettingRepository;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -42,7 +43,7 @@ class AppServiceProvider extends ServiceProvider
 
             $this->configSet();
         } else {
-            dd('sdf');
+            abort(500, 'Database connection failed');
         }
     }
 
@@ -51,6 +52,10 @@ class AppServiceProvider extends ServiceProvider
         if (Schema::hasTable('settings')) {
             $settingRepo = app(SettingRepository::class);
             $setting = $settingRepo->index();
+
+            $this->shareSetting($setting);
+
+            $this->setLocale($setting->default_language);
 
             $siteConfig = $this->app['config'];
 
@@ -88,5 +93,19 @@ class AppServiceProvider extends ServiceProvider
         if ($this->app->environment('production')) {
             \URL::forceScheme('https');
         }
+    }
+
+    private function shareSetting($setting): void
+    {
+        if ($setting) {
+            View::share('setting', $setting);
+        } else {
+            abort(500, 'No settings found.');
+        }
+    }
+
+    private function setLocale($lang): void
+    {
+        app()->setLocale($lang);
     }
 }

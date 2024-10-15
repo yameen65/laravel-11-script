@@ -26,7 +26,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::prefix('/account/')->group(function () {
+Route::prefix('/account/')->middleware('CheckRegister')->group(function () {
     Route::controller(LoginController::class)->group(function () {
         Route::get('signin', 'showLoginForm')->name('login');
         Route::post('signin', 'login');

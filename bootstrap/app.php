@@ -15,6 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'CheckVerifiedAccount' => \App\Http\Middleware\CheckVerifiedAccount::class,
             'isAdmin' => \App\Http\Middleware\IsAdmin::class,
             'checkMail' => \App\Http\Middleware\EnsureEmailIsVerified::class,
+            'CheckRegister' => \App\Http\Middleware\CheckRegisterStatus::class,
             'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
             'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
             'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
