@@ -1,2 +1,2 @@
 import './bootstrap';
-import '../../public/assets/js/app';
+// import '../../public/assets/js/app';

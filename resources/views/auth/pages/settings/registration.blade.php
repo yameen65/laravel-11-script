@@ -4,20 +4,22 @@
         <x-auth.form form-action="{{ route('settings.registeration_update') }}" enctype="true">
             @method('PUT')
 
-            <div class="bg-light p-2">
+            <div class="bg-light p-3 rounded-4">
                 <div class="float-end">
                     <x-auth.input-checkbox margin-top="0" name="registration" id="registration" label=""
                         value="{{ $data['registration'] == 1 ? 1 : 0 }}" />
                 </div>
-                <label class="card-title h5" for="registration">Enable Registration</label>
+                <label class="card-title h5" style="margin-bottom: 0px !important;" for="registration">Enable
+                    Registration</label>
             </div>
 
-            <div class="bg-light p-2 mt-3">
+            <div class="bg-light p-3 rounded-4 mt-3">
                 <div class="float-end">
                     <x-auth.input-checkbox margin-top="0" name="boarding" id="boarding" label=""
                         value="{{ $data['on_boarding'] == 1 ? 1 : 0 }}" />
                 </div>
-                <label class="card-title h5" for="boarding">Enable User On-Boarding</label>
+                <label class="card-title h5" style="margin-bottom: 0px !important;" for="boarding">Enable User
+                    On-Boarding</label>
             </div>
 
             <div class="row mt-3 float-end">

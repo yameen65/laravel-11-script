@@ -3,14 +3,15 @@
         @method('PUT')
 
         <x-auth.card card-header="Social Accounts" header-button="true">
-            <div class="accordion border border-1" id="facebook">
-                <div class="bg-light p-2" for="factivate">
+            <div class="accordion border border-1 rounded-4" id="facebook">
+                <div class="bg-light p-2 rounded-4" for="factivate">
                     <div class="float-end">
                         <x-auth.input-checkbox data-bs-toggle="collapse" data-bs-target="#facebookAcording"
                             aria-expanded="true" aria-controls="facebookAcording" margin-top="0" name="factivate"
                             id="factivate" label="" value="{{ $data['facebook_active'] == 1 ? 1 : 0 }}" />
                     </div>
-                    <h5 class="card-title"><i class="align-middle fab my-1 fa-facebook"></i> Facebook</h5>
+                    <h5 class="card-title" style="margin-bottom: 0px !important;"><i
+                            class="align-middle fab my-1 fa-facebook"></i> Facebook</h5>
                 </div>
 
                 <div id="facebookAcording" class="collapse {{ $data['facebook_active'] == 1 ? 'show' : '' }} p-2"
@@ -35,14 +36,15 @@
                 </div>
             </div>
 
-            <div class="accordion border border-1 mt-3" id="github">
-                <div class="bg-light p-2">
+            <div class="accordion border border-1 rounded-4 mt-3" id="github">
+                <div class="bg-light p-2 rounded-4">
                     <div class="float-end">
                         <x-auth.input-checkbox data-bs-toggle="collapse" data-bs-target="#githubAourding"
                             aria-expanded="true" aria-controls="githubAourding" margin-top="0" name="gitactivate"
                             id="gitactivate" label="" value="{{ $data['github_active'] == 1 ? 1 : 0 }}" />
                     </div>
-                    <h5 class="card-title"><i class="align-middle fab my-1 fa-github"></i> Github</h5>
+                    <h5 class="card-title" style="margin-bottom: 0px !important;"><i
+                            class="align-middle fab my-1 fa-github"></i> Github</h5>
                 </div>
 
                 <div id="githubAourding"
@@ -68,14 +70,15 @@
                 </div>
             </div>
 
-            <div class="accordion border border-1 mt-3" id="google">
-                <div class="bg-light p-2">
+            <div class="accordion border border-1 rounded-4 mt-3" id="google">
+                <div class="bg-light p-2 rounded-4">
                     <div class="float-end">
                         <x-auth.input-checkbox data-bs-toggle="collapse" data-bs-target="#googleAourding"
                             aria-expanded="true" aria-controls="googleAourding" margin-top="0" name="gactivate"
                             id="gactivate" label="" value="{{ $data['google_active'] == 1 ? 1 : 0 }}" />
                     </div>
-                    <h5 class="card-title"><i class="align-middle fab my-1 fa-google"></i> Google</h5>
+                    <h5 class="card-title" style="margin-bottom: 0px !important;"><i
+                            class="align-middle fab my-1 fa-google"></i> Google</h5>
                 </div>
 
                 <div id="googleAourding"
@@ -102,14 +105,15 @@
                 </div>
             </div>
 
-            <div class="accordion border border-1 mt-3" id="twitter">
-                <div class="bg-light p-2">
+            <div class="accordion border border-1 rounded-4 mt-3" id="twitter">
+                <div class="bg-light p-2 rounded-4">
                     <div class="float-end">
                         <x-auth.input-checkbox data-bs-toggle="collapse" data-bs-target="#twitterAourding"
                             aria-expanded="true" aria-controls="twitterAourding" margin-top="0" name="tactivate"
                             id="tactivate" label="" value="{{ $data['twitter_active'] == 1 ? 1 : 0 }}" />
                     </div>
-                    <h5 class="card-title"><i class="align-middle fab my-1 fa-twitter"></i> Twitter</h5>
+                    <h5 class="card-title" style="margin-bottom: 0px !important;"><i
+                            class="align-middle fab my-1 fa-twitter"></i> Twitter</h5>
                 </div>
 
                 <div id="twitterAourding"

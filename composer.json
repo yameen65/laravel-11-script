@@ -13,7 +13,6 @@
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
         "laravel/ui": "*",
-        "livewire/livewire": "^3.5",
         "mcamara/laravel-localization": "^2.0",
         "spatie/laravel-permission": "^6.9"
     },

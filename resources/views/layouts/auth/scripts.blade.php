@@ -28,7 +28,7 @@
 </script>
 
 
-<script src="{{ asset('vendor/livewire/livewire.js') }}"></script>
+{{-- <script src="{{ asset('vendor/livewire/livewire.js') }}"></script> --}}
 
 </body>
 
