@@ -7,6 +7,7 @@ use App\Dto\SiteSettings\BasicInfoDto;
 use App\Dto\SiteSettings\RegisterDto;
 use App\Dto\SiteSettings\SmtpDto;
 use App\Dto\SiteSettings\SocialDto;
+use App\Dto\SiteSettings\UpdateDefaultLanguageDto;
 use App\Helper\BaseQuery;
 use App\Helper\FileUpload;
 use App\Models\Setting;
@@ -78,6 +79,14 @@ class SettingRepository
     }
 
     public function register_update(RegisterDto $data)
+    {
+        $dataArray = $data->toArray();
+        $dataResult = $this->index();
+
+        return $dataResult->update($dataArray);
+    }
+
+    public function update_default_language(UpdateDefaultLanguageDto $data)
     {
         $dataArray = $data->toArray();
         $dataResult = $this->index();

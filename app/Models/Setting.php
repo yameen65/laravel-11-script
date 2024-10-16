@@ -23,6 +23,9 @@ class Setting extends Model
         'google_analytics_active',
         'google_analytics_code',
         'default_country',
+        'default_language',
+        'languages',
+        'installed_languages',
         'default_currency',
         'tax_rate',
         'stripe_active',
@@ -59,6 +62,16 @@ class Setting extends Model
         'on_boarding',
         'status'
     ];
+
+    public function getLanguagesAttribute($value)
+    {
+        return array_map('trim', explode(',', $value));
+    }
+
+    public function getInstalledLanguagesAttribute($value)
+    {
+        return array_map('trim', explode(',', $value));
+    }
 
     public function favicon()
     {

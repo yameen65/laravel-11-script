@@ -4,5 +4,4 @@
 {{-- <link href="{{ asset('assets/css/light.css') }}" rel="stylesheet"> --}}
 <link href="{{ asset('assets/css/modern.css') }}" rel="stylesheet">
 
-@livewireStyles
-{{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+{{-- @livewireStyles --}}

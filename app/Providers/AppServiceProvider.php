@@ -11,6 +11,8 @@ use App\Helper\Helpers;
 use App\Repositories\SettingRepository;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -36,13 +38,19 @@ class AppServiceProvider extends ServiceProvider
             Blade::component('auth.pages.users.profile.layout', 'my-profile');
             Blade::component('auth.pages.settings.layout', 'settings');
 
-            Route::middleware('web', 'auth')
-                ->prefix('my-account')
+            Route::middleware(
+                'web',
+                'auth',
+                'localeSessionRedirect',
+                'localizationRedirect',
+                'localeViewPath',
+            )
+                ->prefix(LaravelLocalization::setLocale() . '/my-account')
                 ->group(base_path('routes/panel.php'));
 
             $this->configSet();
         } else {
-            dd('sdf');
+            abort(500, 'Database connection failed');
         }
     }
 
@@ -51,6 +59,10 @@ class AppServiceProvider extends ServiceProvider
         if (Schema::hasTable('settings')) {
             $settingRepo = app(SettingRepository::class);
             $setting = $settingRepo->index();
+
+            $this->shareSetting($setting);
+
+            $this->setLocale($setting->default_language);
 
             $siteConfig = $this->app['config'];
 
@@ -88,5 +100,19 @@ class AppServiceProvider extends ServiceProvider
         if ($this->app->environment('production')) {
             \URL::forceScheme('https');
         }
+    }
+
+    private function shareSetting($setting): void
+    {
+        if ($setting) {
+            View::share('setting', $setting);
+        } else {
+            abort(500, 'No settings found.');
+        }
+    }
+
+    private function setLocale($lang): void
+    {
+        app()->setLocale($lang);
     }
 }
