@@ -7,10 +7,12 @@ use App\Dto\SiteSettings\RegisterDto;
 use App\Dto\SiteSettings\SmtpDto;
 use App\Dto\SiteSettings\SocialDto;
 use App\Dto\SiteSettings\UpdateDefaultLanguageDto;
+use App\Dto\SiteSettings\InstallLanguageDto;
 use App\Helper\Exception;
 use App\Repositories\SettingRepository;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SiteSettings\BasicInfoRequest;
+use App\Http\Requests\SiteSettings\InstallLanguageRequest;
 use App\Http\Requests\SiteSettings\RegisterRequest;
 use App\Http\Requests\SiteSettings\SmtpRequest;
 use App\Http\Requests\SiteSettings\SocialLoginRequest;
@@ -111,6 +113,16 @@ class SettingController extends Controller
     {
         try {
             $this->_repo->update_default_language(UpdateDefaultLanguageDto::fromRequest($request->validated()));
+            return response()->json(['message' => 'Language updated successfully.']);
+        } catch (\Throwable $th) {
+            return Exception::handle($th);
+        }
+    }
+
+    public function install_language(InstallLanguageRequest $request)
+    {
+        try {
+            $this->_repo->install_language(InstallLanguageDto::fromRequest($request->validated()));
             return response()->json(['message' => 'Language updated successfully.']);
         } catch (\Throwable $th) {
             return Exception::handle($th);

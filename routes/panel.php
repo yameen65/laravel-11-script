@@ -52,6 +52,7 @@ Route::group(
             Route::post('clear-cache', 'clear_cache')->name('clear_cache');
 
             Route::post('update/default-language', 'update_default_language')->name('update_default_language');
+            Route::post('install/language', 'install_language')->name('install_language');
         });
     }
 );
