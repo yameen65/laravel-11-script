@@ -1,8 +1,7 @@
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="{{ asset('assets/js/app.js') }}"></script>
-
-@yield('auth_scripts')
 
 <script>
     function showToaster(type, message, title) {
@@ -27,6 +26,7 @@
     @endif
 </script>
 
+@yield('auth_scripts')
 
 {{-- <script src="{{ asset('vendor/livewire/livewire.js') }}"></script> --}}
 

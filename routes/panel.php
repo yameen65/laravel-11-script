@@ -50,6 +50,8 @@ Route::group(
             Route::put('social-logins/update', 'social_logins_update')->name('social_logins_update');
             Route::put('registration/update', 'registeration_update')->name('registeration_update');
             Route::post('clear-cache', 'clear_cache')->name('clear_cache');
+
+            Route::post('update/default-language', 'update_default_language')->name('update_default_language');
         });
     }
 );

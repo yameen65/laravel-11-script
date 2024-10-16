@@ -48,16 +48,10 @@
             @endforeach
         </select>
 
-
         <h4 class="mt-3">{{ __('Installed Languages') }}</h4>
         {{-- Display default language first --}}
         @if (in_array($default_language, $setting->installed_languages))
             <div class="bg-light p-3 mt-3 rounded-4">
-                <div class="float-end">
-                    <x-auth.input-checkbox margin-top="0" name="installed_languages[]"
-                        id="installed_languages{{ $default_language }}" label=""
-                        value="{{ in_array($default_language, $setting->languages) ? 1 : 0 }}" />
-                </div>
                 <label class="card-title h5" style="margin-bottom: 0px !important;"
                     for="installed_languages{{ $default_language }}">{{ ucfirst($supportedLocales[$default_language]['native']) }}
                     {{ __('(Default Language)') }}
@@ -85,4 +79,31 @@
         @endforeach
 
     </x-auth.card>
+
+    @section('auth_scripts')
+        <script>
+            $('#default_languages').on('change', function() {
+                var selectedLanguage = $(this).val();
+
+                var url = "{{ route('settings.update_default_language') }}"
+
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        language: selectedLanguage
+                    },
+                    success: function(response) {
+                        showToaster('success', 'Language changed successfully!', 'Success');
+                        location.reload();
+                    },
+                    error: function(xhr, status, error) {
+                        showToaster('error', 'Error changing language', 'Error');
+                    }
+                });
+            });
+        </script>
+    @endsection
+
 </x-settings>

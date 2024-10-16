@@ -6,6 +6,7 @@ use App\Dto\SiteSettings\BasicInfoDto;
 use App\Dto\SiteSettings\RegisterDto;
 use App\Dto\SiteSettings\SmtpDto;
 use App\Dto\SiteSettings\SocialDto;
+use App\Dto\SiteSettings\UpdateDefaultLanguageDto;
 use App\Helper\Exception;
 use App\Repositories\SettingRepository;
 use App\Http\Controllers\Controller;
@@ -13,6 +14,7 @@ use App\Http\Requests\SiteSettings\BasicInfoRequest;
 use App\Http\Requests\SiteSettings\RegisterRequest;
 use App\Http\Requests\SiteSettings\SmtpRequest;
 use App\Http\Requests\SiteSettings\SocialLoginRequest;
+use App\Http\Requests\SiteSettings\UpdateDefaultLanguage;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
@@ -100,6 +102,16 @@ class SettingController extends Controller
         try {
             $this->_repo->clear_cache();
             return redirect()->back()->with('success', 'All cache cleared for your website.');
+        } catch (\Throwable $th) {
+            return Exception::handle($th);
+        }
+    }
+
+    public function update_default_language(UpdateDefaultLanguage $request)
+    {
+        try {
+            $this->_repo->update_default_language(UpdateDefaultLanguageDto::fromRequest($request->validated()));
+            return response()->json(['message' => 'Language updated successfully.']);
         } catch (\Throwable $th) {
             return Exception::handle($th);
         }
