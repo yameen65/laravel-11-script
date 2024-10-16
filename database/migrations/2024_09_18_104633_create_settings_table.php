@@ -25,6 +25,8 @@ return new class extends Migration
 
             $table->string('default_country')->default('United States');
             $table->string('default_language')->default('en');
+            $table->string('installed_languages')->default('en, de, fr, da');
+            $table->string('languages')->default('en, de');
 
             $table->string('default_currency')->default('2');
             $table->string('tax_rate')->nullable();
