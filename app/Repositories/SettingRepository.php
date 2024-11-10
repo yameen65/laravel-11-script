@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Constants\Constants;
 use App\Dto\SiteSettings\BasicInfoDto;
+use App\Dto\SiteSettings\InstallLanguageDto;
 use App\Dto\SiteSettings\RegisterDto;
 use App\Dto\SiteSettings\SmtpDto;
 use App\Dto\SiteSettings\SocialDto;
@@ -85,6 +86,22 @@ class SettingRepository extends BaseRepository
         $dataResult = $this->index();
 
         return $dataResult->update($dataArray);
+    }
+
+    public function install_language(InstallLanguageDto $data)
+    {
+        $dataArray = $data->toArray();
+        $newLanguage = $dataArray['available'];
+
+        $dataResult = $this->index();
+        $languages = $dataResult->installed_languages;
+
+        if (!in_array($newLanguage, $languages)) {
+            $languages[] = $newLanguage;
+        }
+
+        $updatedLanguages['installed_languages'] = implode(',', $languages);
+        return $dataResult->update($updatedLanguages);
     }
 
     public function clear_cache()

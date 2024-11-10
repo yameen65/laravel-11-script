@@ -103,6 +103,28 @@
                     }
                 });
             });
+
+            $('#available').on('change', function() {
+                var selectedAvailableLanguage = $(this).val();
+
+                var url = "{{ route('settings.install_language') }}"
+
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        available: selectedAvailableLanguage
+                    },
+                    success: function(response) {
+                        showToaster('success', 'Language changed successfully!', 'Success');
+                        location.reload();
+                    },
+                    error: function(xhr, status, error) {
+                        showToaster('error', 'Error changing language', 'Error');
+                    }
+                });
+            });
         </script>
     @endsection
 
