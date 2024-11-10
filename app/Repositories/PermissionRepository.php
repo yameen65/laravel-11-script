@@ -2,15 +2,10 @@
 
 namespace App\Repositories;
 
-use App\Helper\BaseQuery;
 use Spatie\Permission\Models\Permission;
 
-class PermissionRepository
+class PermissionRepository extends BaseRepository
 {
-    use BaseQuery;
-
-    private $_model = null;
-
     /**
      * Create a new service instance.
      *
@@ -18,14 +13,6 @@ class PermissionRepository
      */
     public function __construct(Permission $model)
     {
-        $this->_model = $model;
-    }
-
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        return $this->get_all($this->_model);
+        $this->setModel($model);
     }
 }

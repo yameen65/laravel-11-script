@@ -9,17 +9,14 @@ use App\Http\Requests\RolePermission\RoleRequest;
 use App\Http\Requests\RolePermission\RoleUpdateRequest;
 use App\Repositories\PermissionRepository;
 use App\Repositories\RoleRepository;
+use Illuminate\Http\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class RoleController extends Controller
+class RoleController extends BaseController
 {
-    private $_repo = null;
-    private $_directory = 'auth.pages.roles';
-    private $_route = 'roles';
-
     public function __construct(RoleRepository $repo)
     {
-        $this->_repo = $repo;
+        $this->setRepo($repo, "auth.pages.roles", "roles");
     }
 
     public function index()
@@ -37,7 +34,6 @@ class RoleController extends Controller
             $this->_repo->store(RoleDto::fromRequest($request->validated()));
             return redirect()->route($this->_route . '.index')->with('success', 'Successfully created.');
         } catch (\Throwable $th) {
-            dd($th->getMessage());
             return redirect()->route($this->_route . '.index')->with('error', 'Something went wrong..');
         }
     }
@@ -57,21 +53,6 @@ class RoleController extends Controller
         }
     }
 
-    public function destroy($id)
-    {
-        try {
-            $this->_repo->destroy($id);
-            return redirect()->route($this->_route . '.index')->with('success', 'Deleted succesfully');
-        } catch (\Throwable $th) {
-            if ($th instanceof NotFoundHttpException) {
-                $message = $th->getMessage();
-                return redirect()->route($this->_route . '.index')->with('error', $message);
-            } else {
-                return redirect()->route($this->_route . '.index')->with('error', 'Something went wrong..');
-            }
-        }
-    }
-
     public function assign_permission(AssignPermission $request)
     {
         try {
@@ -80,9 +61,9 @@ class RoleController extends Controller
         } catch (\Throwable $th) {
             $message = $th->getMessage();
             if ($th instanceof NotFoundHttpException) {
-                return response()->json(['warning' => $message], 400);
+                return response()->json(['warning' => $message], Response::HTTP_BAD_REQUEST);
             } else {
-                return response()->json(['error' => "Something went wroung..."], 500);
+                return response()->json(['error' => "Something went wroung..."], Response::HTTP_INTERNAL_SERVER_ERROR);
             }
         }
     }

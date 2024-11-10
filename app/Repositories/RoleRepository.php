@@ -4,16 +4,11 @@ namespace App\Repositories;
 
 use App\Dto\Permission\RoleDto;
 use App\Dto\Permission\RoleUpdateDto;
-use App\Helper\BaseQuery;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
-class RoleRepository
+class RoleRepository extends BaseRepository
 {
-    use BaseQuery;
-
-    private $_model = null;
-
     /**
      * Create a new service instance.
      *
@@ -21,15 +16,7 @@ class RoleRepository
      */
     public function __construct(Role $model)
     {
-        $this->_model = $model;
-    }
-
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        return $this->get_all($this->_model);
+        $this->setModel($model);
     }
 
     public function get_all_roles()
@@ -42,16 +29,7 @@ class RoleRepository
      */
     public function store(RoleDto $data)
     {
-        $dataArray = $data->toArray();
-        return $this->add($this->_model, $dataArray);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show($id)
-    {
-        return $this->get_by_id($this->_model, $id);
+        return $this->add($this->_model, $data->toArray());
     }
 
     /**
@@ -60,18 +38,7 @@ class RoleRepository
     public function update($id, RoleUpdateDto $data)
     {
         $result = $this->checkRecord($id);
-
-        $dataArray = $data->toArray();
-        return $result->update($dataArray);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id)
-    {
-        $result = $this->checkRecord($id);
-        return $result->delete();
+        return $result ? $result->update($data->toArray()) : null;
     }
 
     public function assign_permission($data)
@@ -86,16 +53,5 @@ class RoleRepository
             $role->revokePermissionTo($permission->id);
             return ['warning' => "Permission removed."];
         }
-    }
-
-    private function checkRecord($id)
-    {
-        $result = $this->show($id);
-
-        if ($result == null) {
-            return null;
-        }
-
-        return $result;
     }
 }

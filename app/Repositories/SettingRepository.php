@@ -8,18 +8,11 @@ use App\Dto\SiteSettings\RegisterDto;
 use App\Dto\SiteSettings\SmtpDto;
 use App\Dto\SiteSettings\SocialDto;
 use App\Dto\SiteSettings\UpdateDefaultLanguageDto;
-use App\Helper\BaseQuery;
-use App\Helper\FileUpload;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Artisan;
 
-class SettingRepository
+class SettingRepository extends BaseRepository
 {
-    use BaseQuery, FileUpload;
-
-    private $_imgPath = 'settings/';
-    private $_model = null;
-
     /**
      * Create a new service instance.
      *
@@ -27,7 +20,7 @@ class SettingRepository
      */
     public function __construct(Setting $model)
     {
-        $this->_model = $model;
+        $this->setModel($model);
     }
 
     /**

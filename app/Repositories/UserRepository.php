@@ -5,35 +5,20 @@ namespace App\Repositories;
 use App\Constants\Constants;
 use App\Dto\UserDto;
 use App\Models\User;
-use App\Helper\BaseQuery;
-use App\Helper\FileUpload;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class UserRepository
+class UserRepository extends BaseRepository
 {
-    use BaseQuery, FileUpload;
-
-    private $_imgPath = 'users/';
-    private $_model = null;
-
     /**
      * Create a new service instance.
      *
      * @return $reauest, $modal
      */
-    public function __construct()
+    public function __construct(User $model)
     {
-        $this->_model = new User();
-    }
-
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        return $this->get_all($this->_model);
+        $this->setModel($model);
     }
 
     public function get_all_users()
@@ -76,14 +61,6 @@ class UserRepository
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show($id)
-    {
-        return $this->get_by_id($this->_model, $id);
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update($id, UserDto $data)
@@ -112,14 +89,6 @@ class UserRepository
         $dataResult->update($dataArray);
 
         return $dataResult;
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id)
-    {
-        return $this->delete($this->_model, $id);
     }
 
     public function validateEmail($email)
