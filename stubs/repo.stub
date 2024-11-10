@@ -3,17 +3,10 @@
 namespace App\Repositories;
 
 use App\Dto\{{ modelDto }};
-use App\Helper\BaseQuery;
-use App\Helper\FileUpload;
 use App\Models\{{ modelName }};
 
-class {{ repositoryName }}
+class {{ repositoryName }} extends BaseRepository
 {
-    use BaseQuery, FileUpload;
-
-    private $_imgPath = 'files/';
-    private $_model = null;
-
     /**
      * Create a new service instance.
      *
@@ -21,15 +14,7 @@ class {{ repositoryName }}
      */
     public function __construct({{ modelName }} $model)
     {
-        $this->_model = $model;
-    }
-
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        return $this->get_all($this->_model);
+        $this->setModel($model);
     }
 
     /**
@@ -53,14 +38,6 @@ class {{ repositoryName }}
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show($id)
-    {
-        return $this->get_by_id($this->_model, $id);
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update($id, {{ modelDto }} $data)
@@ -69,25 +46,5 @@ class {{ repositoryName }}
 
         $dataArray = $data->toArray();
         return $result->update($dataArray);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id)
-    {
-        $result = $this->checkRecord($id);
-        return $result->delete();
-    }
-
-    private function checkRecord($id)
-    {
-        $result = $this->show($id);
-
-        if ($result == null) {
-            return null;
-        }
-
-        return $result;
     }
 }
