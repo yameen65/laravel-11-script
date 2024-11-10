@@ -125,7 +125,7 @@ class SettingController extends Controller
             $this->_repo->install_language(InstallLanguageDto::fromRequest($request->validated()));
             return response()->json(['message' => 'Language updated successfully.']);
         } catch (\Throwable $th) {
-            return Exception::handle($th);
+            return Exception::json($th);
         }
     }
 }

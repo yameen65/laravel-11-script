@@ -1,66 +1,102 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## About Laravel 11 Script
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+In this Repository, you will get a complete Laravel 11 application with roles and auth. you can clone this repository and boom you set up your Laravel application. In this application, we have created components for reusable code.
 
-## About Laravel
+If you want to add any frontend then **please use components already created. Card, Input Fields, Forms, Buttons, Links and Layouts** 
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## System Requirements
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+* Windows 10
+* XAMPP, WAMPP, Laragon server **I use Laragon** [Download](https://laragon.org/download/)
+* PHP 8.1 or better
+* nodejs [Download](https://nodejs.org/en/download/)
+* composer [Download](https://getcomposer.org/Composer-Setup.exe)
+* git bash [Download](https://git-scm.com/downloads)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+**Note:** If you have already setup then skip the installation part and simply clone the repository
 
-## Learning Laravel
+## 1. Install Git Bash
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+* Download git bash from this link -> [Download](https://git-scm.com/downloads)
+* Simply install
+* After installation process complete
+* open the folder where you want to install your Laravel application
+* right-click in the folder and click in the project folder and click on the **Git Bash Here** option then run this command
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## 2. install composer
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+* Download composer from this lnik -> [Download](https://getcomposer.org/Composer-Setup.exe)
+* simply install
 
-## Laravel Sponsors
+## 3. install nodeJs
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+* download link for nodejs -> [Download](https://nodejs.org/en/download/)
+* simple install
 
-### Premium Partners
+# Setup Application
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## 1. Create application
 
-## Contributing
+Open git-bash into your **laragon/www** directory and run this command
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    git clone https://github.com/inaam-ul-haq/laravel-11-script.git
 
-## Code of Conduct
+## 2. Change Directory
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+go to this directory **cd laravel-11-script** directory
 
-## Security Vulnerabilities
+    cd laravel-11-script
+    
+## 3. Create database
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+* open your laragon and go to databse
+* create new database
 
-## License
+## 4. Edit .env
+First copy your **.env.example** file in your project and rename it with **.env** then edit your databse name
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=database_name
+    DB_USERNAME=root
+    DB_PASSWORD=
+
+## 5. Create your table migration files if needed otherwise run this command
+
+* Go to **AppServiceProvider** file
+* Comment the **$this->configSet();** on line 51
+* After this run this command
+
+    php artisan migrate:fresh --seed
+
+* When this command run successfully then uncomment the code you have commented before **$this->configSet();** otherwise you face errors
+
+## 5. Now install composer
+
+Run this command in your git-bash in the project directory
+
+    composer install
+
+# New Module in Application
+
+If you need to create a new module like you need to add the Reviews Module into the system then run this command
+
+    php artisan class Review
+
+### What does this command do?
+
+* Make Controller
+* Create Model
+* Create Migration file
+* Create Dto class
+* Create FormRequest file
+* Create Repository Class
+
+After this command you need to change into your **migrations**, **model**, **dto**
+
+Now Create blades and routes and then enjoy your CRUD that is already created. Just you have to set up blade files.
+
+**Auther**: [Inaam ul haq](https://github.com/Inaam-ul-haq)
+**YouTube:** [Inaam ul haq](https://www.youtube.com/c/techzhub)
+**Instagram:** [Inaam ul haq](https://www.instagram.com/inaamul_hak)
