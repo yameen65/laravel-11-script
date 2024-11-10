@@ -1,7 +1,6 @@
-<div class="card shadow border-0">
+<div class="card shadow border-0 {{ $card }} border-bottom border-primary">
     @if ($cardHeader != null)
         <div class="card-header pb-0">
-
             <div class="card-actions float-end">
                 @if ($headerButton)
                     <a href="javascript::void(0)" class="me-1" onclick="location.reload()">
@@ -28,7 +27,7 @@
         </div>
     @endif
 
-    <div class="card-body {{ $extraBodyClass }}">
+    <div class="card-body {{ $cardBody }}">
         {{ $slot }}
     </div>
 </div>

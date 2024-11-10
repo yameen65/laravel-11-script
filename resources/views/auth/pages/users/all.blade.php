@@ -29,32 +29,16 @@
                                 <td>{{ $user?->full_name }}</td>
                                 <td>{{ $user?->email }}</td>
                                 <td style="display: flex; justify-content: space-between; align-items: center;">
-                                    <!-- View Icon -->
                                     @if (auth()->user()->can('view_user'))
-                                        <a href="{{ route('users.show', ['user' => $user?->id, 'type' => request()->type]) }}"
-                                            class="btn btn-info btn-sm">
-                                            Detail
-                                        </a>
+                                        <x-action-buttons.detail route="{{ route('users.show', $user?->id) }}" />
                                     @endif
 
                                     @if (auth()->user()->can('edit_user'))
-                                        <!-- Edit Icon -->
-                                        <a href="{{ route('users.edit', ['user' => $user?->id, 'type' => request()->type]) }}"
-                                            class="btn btn-primary btn-sm">
-                                            Edit
-                                        </a>
+                                        <x-action-buttons.edit route="{{ route('users.edit', $user?->id) }}" />
                                     @endif
 
                                     @if (auth()->user()->can('delete_user'))
-                                        <!-- Delete Icon -->
-                                        <x-auth.form
-                                            form-action="{{ route('users.destroy', ['user' => $user?->id, 'type' => request()->type]) }}">
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm"
-                                                onclick="return confirm('Are you sure you want to delete this user?')">
-                                                Trash
-                                            </button>
-                                        </x-auth.form>
+                                        <x-action-buttons.trash route="{{ route('users.destroy', $user?->id) }}" />
                                     @endif
                                 </td>
                             </tr>

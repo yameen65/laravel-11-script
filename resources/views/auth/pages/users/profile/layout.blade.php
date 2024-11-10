@@ -1,7 +1,7 @@
 <x-layouts.auth page-title="{{ $title }}" sub-title="{{ $subTitle }}">
     <div class="row">
         <div class="col-md-4 col-xl-3">
-            <x-auth.card extra-body-class="p-0">
+            <x-auth.card card-body="p-0">
                 <x-slot:card-header>
                     <i class="align-middle me-1 fas fa-fw fa-user-edit"></i> Profile Settings
                 </x-slot>

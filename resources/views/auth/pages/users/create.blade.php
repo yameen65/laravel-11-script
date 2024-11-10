@@ -45,7 +45,7 @@
                                 label="{{ __('login.biography_label') }}" />
 
                             <x-auth.input-button btn-class="" btn-type="submit"
-                                btn-value="{{ __('login.login_button') }}" />
+                                btn-value="{{ __('Create New User') }}" />
                         </div>
                     </div>
                 </div>

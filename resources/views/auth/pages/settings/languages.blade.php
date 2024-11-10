@@ -66,6 +66,7 @@
                     <div class="float-end">
                         <x-auth.input-checkbox margin-top="0" name="installed_languages[]"
                             id="installed_languages{{ $localeCode }}" label=""
+                            onchange="installLanguage('{{ $localeCode }}')"
                             value="{{ in_array($localeCode, $setting->languages) ? 1 : 0 }}" />
                     </div>
                     <label class="card-title h5" style="margin-bottom: 0px !important;"
@@ -125,6 +126,32 @@
                     }
                 });
             });
+
+            function installLanguage(localeCode) {
+                let id = "installed_languages" + localeCode;
+                let isChecked = $('#' + id).prop('checked') ? 1 : 0;
+
+                $.ajax({
+                    url: '{{ route('settings.active_language') }}',
+                    method: 'POST',
+                    data: {
+                        locale: localeCode,
+                        is_installed: isChecked,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            showToaster('success', 'Language activated successfully!', 'Success');
+                            location.reload();
+                        } else {
+                            showToaster('error', 'Language not activated!', 'Error');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        showToaster('error', 'Requset error!', 'Error');
+                    }
+                });
+            }
         </script>
     @endsection
 

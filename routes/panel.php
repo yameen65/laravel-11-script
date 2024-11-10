@@ -53,6 +53,7 @@ Route::group(
 
             Route::post('update/default-language', 'update_default_language')->name('update_default_language');
             Route::post('install/language', 'install_language')->name('install_language');
+            Route::post('active/language', 'active_language')->name('active_language');
         });
     }
 );
