@@ -10,16 +10,18 @@ class Card extends Component
 {
     public $cardHeader = null;
     public $headerButton = null;
-    public $extraBodyClass = null;
+    public $cardBody = null;
+    public $card = null;
 
     /**
      * Create a new component instance.
      */
-    public function __construct($cardHeader = null, $headerButton = null, $extraBodyClass = null)
+    public function __construct($cardHeader = null, $headerButton = null, $cardBody = null, $card = null)
     {
         $this->cardHeader = $cardHeader;
         $this->headerButton = $headerButton;
-        $this->extraBodyClass = $extraBodyClass;
+        $this->cardBody = $cardBody;
+        $this->card = $card;
     }
 
     /**

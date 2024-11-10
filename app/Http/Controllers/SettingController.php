@@ -128,4 +128,9 @@ class SettingController extends Controller
             return Exception::json($th);
         }
     }
+
+    public function active_language()
+    {
+        dd('sdf');
+    }
 }

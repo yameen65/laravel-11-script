@@ -59,13 +59,8 @@
 
                                 <td style="display: flex; justify-content: space-between; align-items: center;">
                                     @if (auth()->user()->can('delete_role'))
-                                        <x-auth.form form-action="{{ route('roles.destroy', ['role' => $role->id]) }}">
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-outline-danger btn-sm"
-                                                onclick="return confirm('Are you sure you want to delete this roles?')">
-                                                <i class="align-middle fas fa-fw fa-trash"></i>
-                                            </button>
-                                        </x-auth.form>
+                                        <x-action-buttons.trash
+                                            route="{{ route('roles.destroy', ['role' => $role->id]) }}" />
                                     @endif
                                 </td>
                             </tr>

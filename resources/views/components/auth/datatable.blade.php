@@ -7,7 +7,7 @@
 </table>
 
 @section('auth_scripts')
-    {{-- <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script> --}}
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
 
     <script>
         $("#myTable").DataTable({
