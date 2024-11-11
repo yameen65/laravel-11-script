@@ -19,6 +19,26 @@ class SettingSeeder extends Seeder
         $setting->url = "https://first-script.local";
         $setting->email = "admin@gmail.com";
 
+        $setting->google_active = 1;
+        $setting->google_api_key = env('googleapi');
+        $setting->google_api_secret = env('googlesecret');
+        $setting->google_redirect_url = env('googleredirect');
+
+        $setting->github_active = 1;
+        $setting->github_api_key = env('githubapi');
+        $setting->github_api_secret = env('githubapi');
+        $setting->github_redirect_url = env('githubapi');
+
+        $setting->facebook_active = 1;
+        $setting->facebook_api_key = env('facebookapi');
+        $setting->facebook_api_secret = env('facebookapi');
+        $setting->facebook_redirect_url = env('facebookapi');
+
+        $setting->twitter_active = 1;
+        $setting->twitter_api_key = env('twitterapi');
+        $setting->twitter_api_secret = env('twitterapi');
+        $setting->twitter_redirect_url = env('twitterapi');
+
         $setting->save();
         $setting->file()->create(['name' => 'logo.svg', 'path' => 'settings/logo.svg', 'type' => 'logo']);
     }

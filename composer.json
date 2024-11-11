@@ -11,6 +11,7 @@
         "php": "^8.2",
         "inaam-ul-haq/installer": "@dev",
         "laravel/framework": "^11.9",
+        "laravel/socialite": "^5.16",
         "laravel/tinker": "^2.9",
         "laravel/ui": "*",
         "mcamara/laravel-localization": "^2.0",
