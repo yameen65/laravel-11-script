@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\SocialLoginController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use Inaam\Installer\Middleware\ApplicationStatus;
@@ -51,6 +52,9 @@ Route::group(
             Route::get('verify', function () {
                 return view('auth.verify');
             })->name('verify_email')->middleware('CheckVerifiedAccount');
+
+            Route::get('auth/{provider}', [SocialLoginController::class, 'redirectToProvider'])->name('social.redirect');
+            Route::get('auth/{provider}/callback', [SocialLoginController::class, 'handleProviderCallback'])->name('social.callback');
         });
     }
 );
