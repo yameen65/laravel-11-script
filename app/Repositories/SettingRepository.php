@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Constants\Constants;
+use App\Dto\SiteSettings\ActiveLanguageDto;
 use App\Dto\SiteSettings\BasicInfoDto;
 use App\Dto\SiteSettings\InstallLanguageDto;
 use App\Dto\SiteSettings\RegisterDto;
@@ -101,6 +102,33 @@ class SettingRepository extends BaseRepository
         }
 
         $updatedLanguages['installed_languages'] = implode(',', $languages);
+        return $dataResult->update($updatedLanguages);
+    }
+
+    public function active_language(ActiveLanguageDto $data)
+    {
+        $dataArray = $data->toArray();
+        $newLanguage = $dataArray['locale'];
+        $is_installed = $dataArray['is_installed'];
+
+        $dataResult = $this->index();
+        $languages = $dataResult->languages;
+
+        if (is_string($languages)) {
+            $languages = explode(',', $languages);
+        }
+
+        if ($is_installed) {
+            if (!in_array($newLanguage, $languages)) {
+                $languages[] = $newLanguage;
+            }
+        } else {
+            if (($key = array_search($newLanguage, $languages)) !== false) {
+                unset($languages[$key]);
+            }
+        }
+
+        $updatedLanguages['languages'] = implode(',', $languages);
         return $dataResult->update($updatedLanguages);
     }
 

@@ -140,8 +140,8 @@
                         _token: '{{ csrf_token() }}'
                     },
                     success: function(response) {
-                        if (response.success) {
-                            showToaster('success', 'Language activated successfully!', 'Success');
+                        if (response.status == '200') {
+                            showToaster('success', response.message, 'Success');
                             location.reload();
                         } else {
                             showToaster('error', 'Language not activated!', 'Error');

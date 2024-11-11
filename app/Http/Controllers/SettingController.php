@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Dto\SiteSettings\ActiveLanguageDto;
 use App\Dto\SiteSettings\BasicInfoDto;
 use App\Dto\SiteSettings\RegisterDto;
 use App\Dto\SiteSettings\SmtpDto;
@@ -11,6 +12,7 @@ use App\Dto\SiteSettings\InstallLanguageDto;
 use App\Helper\Exception;
 use App\Repositories\SettingRepository;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SiteSettings\ActiveLanguageRequest;
 use App\Http\Requests\SiteSettings\BasicInfoRequest;
 use App\Http\Requests\SiteSettings\InstallLanguageRequest;
 use App\Http\Requests\SiteSettings\RegisterRequest;
@@ -18,6 +20,7 @@ use App\Http\Requests\SiteSettings\SmtpRequest;
 use App\Http\Requests\SiteSettings\SocialLoginRequest;
 use App\Http\Requests\SiteSettings\UpdateDefaultLanguage;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class SettingController extends Controller
 {
@@ -129,8 +132,13 @@ class SettingController extends Controller
         }
     }
 
-    public function active_language()
+    public function active_language(ActiveLanguageRequest $request)
     {
-        dd('sdf');
+        try {
+            $this->_repo->active_language(ActiveLanguageDto::fromRequest($request->validated()));
+            return response()->json(['message' => 'Language updated successfully.', 'status' => Response::HTTP_OK]);
+        } catch (\Throwable $th) {
+            return Exception::json($th);
+        }
     }
 }
