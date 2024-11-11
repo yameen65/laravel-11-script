@@ -3,10 +3,8 @@
 namespace App\Http\Requests\SiteSettings;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use Illuminate\Validation\Rule;
 
-class InstallLanguageRequest extends FormRequest
+class ActiveLanguageRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +22,8 @@ class InstallLanguageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'available' => [
-                'required',
-                'string'
-            ]
+            'locale' => ['required'],
+            'is_installed' => ['required']
         ];
     }
 }
