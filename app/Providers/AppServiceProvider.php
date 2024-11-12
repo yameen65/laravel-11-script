@@ -78,15 +78,6 @@ class AppServiceProvider extends ServiceProvider
                 $siteConfig->set('mail.mailers.smtp.encryption', $setting->smtp_encryption ?? env('MAIL_ENCRYPTION'));
                 $siteConfig->set('mail.from.address', $setting->smtp_email ?? env('MAIL_FROM_ADDRESS'));
                 $siteConfig->set('mail.from.name', $setting->smtp_sender_name ?? env('MAIL_FROM_NAME'));
-
-                Auth::routes(
-                    [
-                        'verify' => true,
-                        'login' => false,
-                        'register' => false,
-                        'logout' => false
-                    ]
-                );
             } else {
                 abort(500, 'No settings found.');
             }

@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Events\PackageTrial;
+use App\Constants\Constants;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -74,7 +71,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $baseUsername = strtolower($data['first_name'] . '-' . $data['last_name']);
+        $username = $baseUsername;
+
+        $counter = 1;
+        while (User::where('username', $username)->exists()) {
+            $username = $baseUsername . $counter;
+            $counter++;
+        }
+
         $userArr = [
+            'username' => $username,
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
@@ -83,7 +90,7 @@ class RegisterController extends Controller
 
         $user = User::create($userArr);
 
-        $user->assignRole('customer');
+        $user->assignRole(Constants::USER);
 
         return $user;
     }

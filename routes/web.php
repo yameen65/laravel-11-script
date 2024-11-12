@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\SocialLoginController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
 use Inaam\Installer\Middleware\ApplicationStatus;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -23,6 +24,15 @@ Route::get('/clear', function () {
     Artisan::call('migrate:fresh --seed');
     return "Cleared";
 });
+
+Auth::routes(
+    [
+        'verify' => true,
+        'login' => false,
+        'register' => false,
+        'logout' => false
+    ]
+);
 
 Route::group(
     [
