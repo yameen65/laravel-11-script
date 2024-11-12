@@ -39,6 +39,14 @@ class SettingSeeder extends Seeder
         $setting->twitter_api_secret = env('twitterapi');
         $setting->twitter_redirect_url = env('twitterapi');
 
+        $setting->smtp_host = env('MAIL_HOST');
+        $setting->smtp_port = env('MAIL_PORT');
+        $setting->smtp_username = env('MAIL_USERNAME');
+        $setting->smtp_password = env('MAIL_PASSWORD');
+        $setting->smtp_email = "admin@gmail.com";
+        $setting->smtp_sender_name = 'LaraAi';
+        $setting->smtp_encryption = 'tls';
+
         $setting->save();
         $setting->file()->create(['name' => 'logo.svg', 'path' => 'settings/logo.svg', 'type' => 'logo']);
     }
