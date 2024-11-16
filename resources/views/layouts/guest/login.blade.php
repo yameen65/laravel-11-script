@@ -19,6 +19,9 @@
                             </div>
 
                             {{ $slot }}
+
+                            <hr>
+                            <x-social-logins />
                         </div>
                     </x-auth.card>
 
