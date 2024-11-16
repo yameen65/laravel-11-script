@@ -31,11 +31,11 @@ class SocialLoginRequest extends FormRequest
 
     public function withValidator($validator)
     {
-        $validator->sometimes('fapi', 'required|string|min:32|max:64', function ($input) {
+        $validator->sometimes('fapi', 'required|string', function ($input) {
             return $input->factivate;
         });
 
-        $validator->sometimes('fsecret', 'required|string|min:32|max:64', function ($input) {
+        $validator->sometimes('fsecret', 'required|string', function ($input) {
             return $input->factivate;
         });
 
@@ -43,11 +43,11 @@ class SocialLoginRequest extends FormRequest
             return $input->factivate;
         });
 
-        $validator->sometimes('gitapi', 'required|string|min:32|max:64', function ($input) {
+        $validator->sometimes('gitapi', 'required|string', function ($input) {
             return $input->gitactivate;
         });
 
-        $validator->sometimes('gitsecret', 'required|string|min:32|max:64', function ($input) {
+        $validator->sometimes('gitsecret', 'required|string', function ($input) {
             return $input->gitactivate;
         });
 
@@ -55,11 +55,11 @@ class SocialLoginRequest extends FormRequest
             return $input->gitactivate;
         });
 
-        $validator->sometimes('gapi', 'required|string|min:32|max:64', function ($input) {
+        $validator->sometimes('gapi', 'required|string', function ($input) {
             return $input->gactivate;
         });
 
-        $validator->sometimes('gsecret', 'required|string|min:32|max:64', function ($input) {
+        $validator->sometimes('gsecret', 'required|string', function ($input) {
             return $input->gactivate;
         });
 
@@ -67,11 +67,11 @@ class SocialLoginRequest extends FormRequest
             return $input->gactivate;
         });
 
-        $validator->sometimes('tapi', 'required|string|min:32|max:64', function ($input) {
+        $validator->sometimes('tapi', 'required|string', function ($input) {
             return $input->tactivate;
         });
 
-        $validator->sometimes('tsecret', 'required|string|min:32|max:64', function ($input) {
+        $validator->sometimes('tsecret', 'required|string', function ($input) {
             return $input->tactivate;
         });
 
@@ -90,25 +90,24 @@ class SocialLoginRequest extends FormRequest
         return [
             'fapi.required' => 'The Facebook API key is required.',
             'fapi.string' => 'The Facebook API key must be a valid string.',
-            'fapi.min' => 'The Facebook API key must be at least 32 characters.',
-            'fapi.max' => 'The Facebook API key cannot exceed 64 characters.',
             'fsecret.required' => 'The Facebook Secret key is required.',
-            'fsecret.min' => 'The Facebook Secret key must be at least 32 characters.',
-            'fsecret.max' => 'The Facebook Secret key cannot exceed 64 characters.',
             'furl.required' => 'The Facebook Redirect URL is required.',
             'furl.url' => 'The Facebook Redirect URL must be a valid URL.',
 
             'gitapi.required' => 'The GitHub API key is required.',
             'gitsecret.required' => 'The GitHub Secret key is required.',
             'giturl.required' => 'The GitHub Redirect URL is required.',
+            'giturl.url' => 'The Github Redirect URL must be a valid URL.',
 
             'gapi.required' => 'The Google API key is required.',
             'gsecret.required' => 'The Google Secret key is required.',
             'gurl.required' => 'The Google Redirect URL is required.',
+            'gurl.url' => 'The Google Redirect URL must be a valid URL.',
 
             'tapi.required' => 'The Twitter API key is required.',
             'tsecret.required' => 'The Twitter Secret key is required.',
             'turl.required' => 'The Twitter Redirect URL is required.',
+            'turl.url' => 'The Twitter Redirect URL must be a valid URL.',
         ];
     }
 }
