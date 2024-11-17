@@ -15,6 +15,7 @@
         "laravel/tinker": "^2.9",
         "laravel/ui": "*",
         "mcamara/laravel-localization": "^2.0",
+        "munafio/chatify": "^1.6",
         "spatie/laravel-permission": "^6.9"
     },
     "require-dev": {
