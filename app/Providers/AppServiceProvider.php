@@ -71,7 +71,7 @@ class AppServiceProvider extends ServiceProvider
                 $siteConfig->set('app.url', $setting->url);
                 $siteConfig->set('app.logo', $setting->logo());
 
-                $siteConfig->set('mail.mailers.smtp.host', $setting->smtp_host ?? env('MAIL_PORT'));
+                $siteConfig->set('mail.mailers.smtp.host', $setting->smtp_host ?? env('MAIL_HOST'));
                 $siteConfig->set('mail.mailers.smtp.port', (int)($setting->smtp_port ?? env('MAIL_PORT')));
                 $siteConfig->set('mail.mailers.smtp.username', $setting->smtp_username ?? env('MAIL_USERNAME'));
                 $siteConfig->set('mail.mailers.smtp.password', $setting->smtp_password ?? env('MAIL_PASSWORD'));

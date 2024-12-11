@@ -40,6 +40,11 @@
                     </li>
                 </ul>
             </li>
+            <li class="sidebar-item {{ Str::startsWith(request()->route()->getName(), 'roles.') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ route('my-account/messages') }}">
+                    <i class="align-middle me-2 fas fa-fw fa-book"></i> <span class="align-middle">Messages</span>
+                </a>
+            </li>
 
             <li class="sidebar-header">
                 Configuration

@@ -66,6 +66,8 @@ class MessagesController extends Controller
         if ($fetch) {
             $userAvatar = Chatify::getUserWithAvatar($fetch)->avatar;
         }
+        $fetch->profile = $fetch->profile();
+
         return Response::json([
             'favorite' => $favorite,
             'fetch' => $fetch ?? null,
