@@ -17,12 +17,19 @@
     </table>
 @endif
 
+
+
 {{-- -------------------- Contact list -------------------- --}}
 @if ($get == 'users' && !!$lastMessage)
     <?php
     $lastMessageBody = mb_convert_encoding($lastMessage->body, 'UTF-8', 'UTF-8');
     $lastMessageBody = strlen($lastMessageBody) > 30 ? mb_substr($lastMessageBody, 0, 30, 'UTF-8') . '..' : $lastMessageBody;
     ?>
+
+    @php
+        $newUser = \App\Models\User::find($user->id);
+    @endphp
+
     <table class="messenger-list-item" data-contact="{{ $user->id }}">
         <tr data-action="0">
             {{-- Avatar side --}}
@@ -30,13 +37,13 @@
                 @if ($user->active_status)
                     <span class="activeStatus"></span>
                 @endif
-                <div class="avatar av-m" style="background-image: url('{{ $user->profile() }}');">
+                <div class="avatar av-m" style="background-image: url('{{ $newUser->profile() }}');">
                 </div>
             </td>
             {{-- center side --}}
             <td>
                 <p data-id="{{ $user->id }}" data-type="user">
-                    {{ strlen($user->full_name) > 12 ? trim(substr($user->full_name, 0, 12)) . '..' : $user->full_name }}
+                    {{ strlen($user->first_name) > 12 ? trim(substr($user->first_name, 0, 12)) . '..' : $user->first_name }}
                     <span class="contact-item-time"
                         data-time="{{ $lastMessage->created_at }}">{{ $lastMessage->timeAgo }}</span>
                 </p>
@@ -59,11 +66,15 @@
 
 {{-- -------------------- Search Item -------------------- --}}
 @if ($get == 'search_item')
+    @php
+        $newUser = \App\Models\User::find($user->id);
+    @endphp
+
     <table class="messenger-list-item" data-contact="{{ $user->id }}">
         <tr data-action="0">
             {{-- Avatar side --}}
             <td>
-                <div class="avatar av-m" style="background-image: url('{{ $user->profile() }}');">
+                <div class="avatar av-m" style="background-image: url('{{ $newUser->profile() }}');">
                 </div>
             </td>
             {{-- center side --}}
