@@ -46,7 +46,7 @@ return new class extends Migration
             $table->string('smtp_password')->nullable();
             $table->string('smtp_email')->nullable();
             $table->string('smtp_sender_name')->nullable();
-            $table->string('smtp_encryption')->default('TLS');
+            $table->string('smtp_encryption')->default('tls');
 
             //SOCIAL LOGIN
             $table->boolean('facebook_active')->default(0);

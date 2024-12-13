@@ -29,7 +29,7 @@ Route::group(
             Route::post('store', 'store')->name('store')->middleware('can:add_user');
             Route::get('edit/{user}', 'edit')->name('edit')->middleware('can:edit_user');
             Route::put('update/{user}', 'update')->name('update')->middleware('can:edit_user');
-            Route::delete('delete/{user}', 'delete')->name('destroy')->middleware('can:delete_user');
+            Route::delete('delete/{user}', 'destroy')->name('destroy')->middleware('can:delete_user');
         });
 
         Route::prefix('roles')->as('roles.')->controller(RoleController::class)->group(function () {
