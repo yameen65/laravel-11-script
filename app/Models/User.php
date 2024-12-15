@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use App\Relationships\FileRelationship;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use App\Relationships\FileRelationship;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -61,4 +61,16 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->fileUrl('profile');
     }
+
+     public function posts()
+     {
+         return $this->hasMany(Post::class);
+     }
+ 
+     public function comments()
+     {
+         return $this->hasMany(Comment::class);
+     }
+
+    
 }

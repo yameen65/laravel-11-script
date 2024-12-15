@@ -18,6 +18,8 @@ class LoginController extends Controller
     |
     */
 
+
+
     use AuthenticatesUsers;
 
     /**
@@ -25,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/my-account';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.

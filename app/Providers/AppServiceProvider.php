@@ -2,16 +2,17 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Blade;
-use App\Constants\Constants;
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Route;
+use URL;
 use App\Helper\Helpers;
-use App\Repositories\SettingRepository;
-use Illuminate\Support\Facades\Schema;
+use App\Constants\Constants;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Schema;
+use App\Repositories\SettingRepository;
+use Illuminate\Support\ServiceProvider;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class AppServiceProvider extends ServiceProvider
@@ -89,7 +90,7 @@ class AppServiceProvider extends ServiceProvider
     private function forceSchemeHttps(): void
     {
         if ($this->app->environment('production')) {
-            \URL::forceScheme('https');
+            URL::forceScheme('https');
         }
     }
 

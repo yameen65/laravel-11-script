@@ -1,19 +1,19 @@
 <?php
 
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\SocialLoginController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\SocialLoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use Inaam\Installer\Middleware\ApplicationStatus;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
-// Route::middleware(ApplicationStatus::class)->group(function () {
-// Route::get('/', function () {
-//     return view('welcome');
-// })->name('welcome');
-// });
+Route::middleware(ApplicationStatus::class)->group(function () {
+Route::get('/', function () {
+    return view('welcome');
+})->name('welcome');
+});
 
 Route::get('/clear', function () {
     Artisan::call('config:cache');
@@ -52,6 +52,7 @@ Route::group(
             Route::controller(LoginController::class)->group(function () {
                 Route::get('signin', 'showLoginForm')->name('login');
                 Route::post('signin', 'login');
+                
             });
 
             Route::controller(RegisterController::class)->group(function () {
@@ -68,3 +69,8 @@ Route::group(
         });
     }
 );
+
+
+
+
+

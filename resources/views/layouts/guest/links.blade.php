@@ -22,4 +22,7 @@
 </head>
 
 <body class="theme-blue">
+
+    {{-- <div class="container mt-5"> --}}
+
     {{-- <x-splash-screen /> --}}
