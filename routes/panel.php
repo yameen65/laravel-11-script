@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RatingController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\Auth\ResetPasswordController;
@@ -76,3 +77,5 @@ Route::prefix('post')->as('posts.')->middleware('auth')->group(function () {
 Route::prefix('comment')->as('comments.')->middleware('auth')->group(function () {
     Route::post('store', [CommentController::class, 'store'])->name('store');
 });
+
+Route::post('/ratings', [RatingController::class, 'store'])->name('ratings.store');
