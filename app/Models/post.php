@@ -31,9 +31,6 @@ public function rating()
     return $this->hasMany(rating::class, 'post_id');
 }
 
-public function averageRating()
-{
-    return $this->ratings()->avg('rating');
-}
+
 
 }
