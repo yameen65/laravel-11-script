@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -67,8 +68,8 @@ Route::prefix('post')->as('posts.')->middleware('auth')->group(function () {
     Route::post('store', [PostController::class, 'store'])->name('store');
     Route::get('show/{id}', [PostController::class, 'show'])->name('show');
     Route::get('edit/{id}', [PostController::class, 'edit'])->name('edit');
-    Route::put('update/{id}', [PostController::class, 'update'])->name('update'); 
-    Route::delete('delete/{id}', [PostController::class, 'destroy'])->name('delete'); 
+    Route::put('update/{id}', [PostController::class, 'update'])->name('update');
+    Route::delete('delete/{id}', [PostController::class, 'destroy'])->name('delete');
 });
 
 
@@ -79,3 +80,6 @@ Route::prefix('comment')->as('comments.')->middleware('auth')->group(function ()
 });
 
 Route::post('/ratings', [RatingController::class, 'store'])->name('ratings.store');
+
+
+// Route::post('/posts/{post}/like', [LikeController::class, 'toggleLike'])->name('posts.like')->middleware('auth');

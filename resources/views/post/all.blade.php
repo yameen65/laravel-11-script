@@ -6,11 +6,9 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="card h-100 shadow-sm border-0">
                         @if ($post->image)
-                            <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->tittle }}"
-                                class="card-img-top img-fluid">
+                            <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="card-img-top img-fluid">
                         @else
-                            <img src="{{ asset('default-image.jpg') }}" alt="Default Image"
-                                class="card-img-top img-fluid">
+                            <img src="{{ asset('default-image.jpg') }}" alt="Default Image" class="card-img-top img-fluid">
                         @endif
                         <div class="position-relative">
                             <div class="date-badge bg-primary text-white py-1 px-3 rounded">
@@ -18,26 +16,23 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">{{ $post->tittle }}</h5>
+                            <h5 class="card-title">{{ $post->title }}</h5>
                             <p class="card-text">{{ Str::limit($post->content, 150) }}</p>
                         </div>
                         <div class="card-footer bg-transparent border-0 text-center">
                             <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary">Read More</a>
                             <div class="mt-3">
-                                <form id="rating-form-{{ $post->id }}" action="{{ route('ratings.store') }}"
-                                    method="POST">
+                                 <!-- Rating System -->
+                                <form id="rating-form-{{ $post->id }}" action="{{ route('ratings.store') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="post_id" value="{{ $post->id }}">
-                                    <input type="hidden" name="rating" id="rating-input-{{ $post->id }}"
-                                        value="">
-
-
+                                    <input type="hidden" name="rating" id="rating-input-{{ $post->id }}" value="0">
                                     <div class="star-rating" data-post-id="{{ $post->id }}">
                                         @for ($i = 1; $i <= 5; $i++)
                                             <span class="star" data-value="{{ $i }}">&#9734;</span>
                                         @endfor
                                     </div>
-                                    <button type="submit" class="btn btn-success btn-sm mt-2">Submit</button>
+                                    <button type="submit" class="btn btn-success btn-sm mt-2">Submit Rating</button>
                                 </form>
                             </div>
                         </div>
@@ -50,11 +45,20 @@
             @endforelse
         </div>
     </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const starContainers = document.querySelectorAll('.star-rating');
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 
-            starContainers.forEach(container => {
+            const updateStarVisuals = (stars, rating) => {
+                stars.forEach(star => {
+                    const starValue = star.getAttribute('data-value');
+                    star.innerHTML = starValue <= rating ? '&#9733;' : '&#9734;';
+                    star.classList.toggle('text-warning', starValue <= rating);
+                });
+            };
+
+            document.querySelectorAll('.star-rating').forEach(container => {
                 const postId = container.getAttribute('data-post-id');
                 const stars = container.querySelectorAll('.star');
                 const ratingInput = document.getElementById(`rating-input-${postId}`);
@@ -64,30 +68,38 @@
                         const rating = star.getAttribute('data-value');
                         ratingInput.value = rating;
 
+                        fetch(`/posts/${postId}/rate`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': csrfToken
+                            },
+                            body: JSON.stringify({ rating })
+                        })
+                        .then(response => {
+                            if (!response.ok) throw new Error('Failed to submit rating');
+                            return response.json();
+                        })
+                        .then(data => {
+                            if (data.success) {
+                                alert('Rating submitted successfully!');
+                            } else {
+                                alert('Failed to submit rating');
+                            }
+                        })
+                        .catch(error => alert('An error occurred: ' + error.message));
 
-                        stars.forEach(s => {
-                            s.innerHTML = s.getAttribute('data-value') <= rating ?
-                                '&#9733;' : '&#9734;';
-                            s.classList.toggle('text-warning', s.getAttribute(
-                                'data-value') <= rating);
-                        });
+                        updateStarVisuals(stars, rating);
                     });
-
 
                     star.addEventListener('mouseenter', () => {
                         const hoverValue = star.getAttribute('data-value');
-                        stars.forEach(s => {
-                            s.innerHTML = s.getAttribute('data-value') <=
-                                hoverValue ? '&#9733;' : '&#9734;';
-                        });
+                        updateStarVisuals(stars, hoverValue);
                     });
 
                     container.addEventListener('mouseleave', () => {
                         const currentRating = ratingInput.value || 0;
-                        stars.forEach(s => {
-                            s.innerHTML = s.getAttribute('data-value') <=
-                                currentRating ? '&#9733;' : '&#9734;';
-                        });
+                        updateStarVisuals(stars, currentRating);
                     });
                 });
             });
