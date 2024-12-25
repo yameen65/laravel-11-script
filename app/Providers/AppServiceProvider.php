@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use URL;
 use App\Helper\Helpers;
 use App\Constants\Constants;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\View;
