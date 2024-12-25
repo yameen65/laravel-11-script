@@ -16,12 +16,22 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">{{ $post->title }}</h5>
+                            <h5 class="card-title">{{ $post->tittle }}</h5>
                             <p class="card-text">{{ Str::limit($post->content, 150) }}</p>
                         </div>
                         <div class="card-footer bg-transparent border-0 text-center">
                             <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary">Read More</a>
                             <div class="mt-3">
+
+                                @auth
+                                <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                <form action="{{ route('posts.delete', $post->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Are you sure you want to delete this post?')">Delete</button>
+                                </form>
+                            @endauth
                                  <!-- Rating System -->
                                 <form id="rating-form-{{ $post->id }}" action="{{ route('ratings.store') }}" method="POST">
                                     @csrf
